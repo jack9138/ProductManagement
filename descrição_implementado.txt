@@ -1,0 +1,27 @@
+Descrição Projeto parte de LP3: 
+
+Montei 4 pacotes na pasta src. Cada pacote tem suas devidas classes. 
+
+Montei as classes de acordo com o diagrama: 
+
+Banco ainda não possui nenhuma definição
+
+Estoque:
+EntradaEstoque
+NotaFiscal
+Produto
+SaidaEstoque
+
+Pra essas eu já criei os objetos,fiz a herança e criei alguns métodos,
+mas acredito que ainda esta faltando ou fiz coisa errada se puder olhar elas, seria bom. 
+
+Funcionario: 
+Funcionario 
+Usuario
+
+Só criei os objetos e os metodos geters e seters. 
+Falta alguns métodos tambem como o de cadastro e tals
+Básicamente falta bastante coisa ainda pra implementar. 
+
+ 
+
