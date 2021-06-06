@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Estoque;
+package Model;
 
 /**
  *
@@ -11,7 +11,7 @@ package Estoque;
  */
 public class Produto {
     
-    private int idProduto;
+    private int idProduto;//Mudar tabela, para ID do produto ser gerado a partir de uma proc/function
     private String nomeProduto;
     private String descriProduto;
     private double valorProduto;
@@ -23,18 +23,28 @@ public class Produto {
         
     }
     
-    public Produto(String nomeProduto, String descriProduto, double valorProduto,String marca,String modelo,int tamanho){
+    public Produto(String nomeProduto, String descriProduto, double valorProduto,String marca,String modelo,int tamanho,int idProduto){
         this.nomeProduto = nomeProduto;
         this.descriProduto = descriProduto;
         this.valorProduto = valorProduto; 
         this.tamanho = tamanho;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.idProduto = idProduto;
     }
     
-    public void setProduto(String nomeProduto){
+    public void setIdProduto(int idProduto){
+        this.idProduto = idProduto;
+    }
+    
+    public int getIdProduto(){
+        return this.idProduto;
+    }
+    public void setNomeProduto(String nomeProduto){
         this.nomeProduto = nomeProduto;
     }
     
-    public String getProduto(){
+    public String getNomeProduto(){
         return this.nomeProduto;
     }
     
@@ -78,35 +88,4 @@ public class Produto {
     public int getTamanho(){
         return this.tamanho;
     }
-    
-    //metodo para incluir produto
-    public void incluirProduto(String nomeProduto, String descriProduto, double valorProduto,String marca,String modelo,int tamanho){
-        this.nomeProduto = nomeProduto ;
-        this.descriProduto = descriProduto;
-        this.modelo = modelo;
-        this.modelo = marca;
-        this.valorProduto = valorProduto;
-        this.tamanho = tamanho;
-        
-    }
-    //meotodo para excluir produto
-    public void excluirProduto(String nomeProduto, String descriProduto, double valorProduto,String marca,String modelo,int tamanho){
-        this.nomeProduto = nomeProduto ;
-        this.descriProduto = descriProduto;
-        this.modelo = modelo;
-        this.modelo = marca;
-        this.valorProduto = valorProduto;
-        this.tamanho = tamanho;
-    }
-    
-    //metodo para imprimir
-    public String imprimeProduto(){
-        
-        return "Número Produto: " + idProduto + "\n"
-                + "Produto: " + this.nomeProduto + "\n"
-                + "Marca: "  + this.modelo + "\n"
-                + "Modelo: " +this.modelo + "\n"
-                + "Valor unidade:R$ " + this.valorProduto;
-    }
-    
 }

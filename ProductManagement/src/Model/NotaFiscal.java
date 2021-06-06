@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Estoque;
+package Model;
 
 /**
  *
@@ -16,13 +16,21 @@ public class NotaFiscal extends Produto {
     private String naturezaOperacao; //Fazer uma classe que identifica os tipos de operações
     private Date dataNota;
     private String cnpj;
-    //private double valorItem; //reaproveitar da classe Produto
+    private double valorItem; //reaproveitar da classe Produto
     private double valorTotalNota; // reaproveitar da classe Produto
     
     
     //construtor padrão vazio para não dar erro
     public NotaFiscal(){
         
+    }
+    public NotaFiscal(String naturezaOperacao,Date dataNota, String cnpj,double valorItem, double valorTotalNota){
+        
+        this.naturezaOperacao = naturezaOperacao;
+        this.dataNota = dataNota;
+        this.cnpj = cnpj;
+        this.valorItem = valorItem; 
+        this.valorTotalNota = valorTotalNota;
     }
     
     public void setNaturezaOperacao(String naturezaOperacao){
@@ -49,34 +57,36 @@ public class NotaFiscal extends Produto {
          return this.cnpj;
     }
     
+    public void setValorItem (double valorItem){
+        this.valorItem =  valorItem;
+    }
+    
+    public double getValorItem(){
+         return this.valorItem;
+    }
     
     public void setValorTotalNota (double valorTotalNota){
         this.valorTotalNota =  valorTotalNota;
     }
     
-    public double setValorTotalNota(){
+    public double getValorTotalNota(){
          return this.valorTotalNota;
     }
     
     
-    public NotaFiscal(String naturezaOperacao,Date dataNota, String cnpj,double valorItem, double valorTotalNota){
-        
-        this.naturezaOperacao = naturezaOperacao;
-        this.dataNota = dataNota;//Deve ser a nota da emissão(hora local)
-        this.cnpj = cnpj;
-    }
+    
     
     //valorProduto = valor unidade do produto
-    public double totalNota(int qtdProduto, double valorProduto){
+    /*public double totalNota(int qtdProduto, double valorProduto){
         double total = 0.0;
         //Lógica de verificar se a quantidade é maior que 0 deve ser feita antes de chamar o método
         total = (qtdProduto * valorProduto);
         return total;
-    }
+    }*/
     
     
     //Não sei se esta certo esse método
-    public String gerarNota(String naturezaOperacao,Date dataNota, String cnpj,double valorTotalNota){
+    /*public String gerarNota(String naturezaOperacao,Date dataNota, String cnpj,double valorTotalNota){
         
         return ("NATUREZA DA OPERACAO: %s "
                 +naturezaOperacao+ 
@@ -91,6 +101,6 @@ public class NotaFiscal extends Produto {
                 );
         
     }
-    
+    */
     
 }
