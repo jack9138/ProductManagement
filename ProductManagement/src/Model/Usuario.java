@@ -17,16 +17,21 @@ public class Usuario {
     private String email;
     private String telefone;
     private String funcao;
+    private String estado;
+    private String bairro;
+    private String cidade;
+    private String rua;
+    private char usStatus;
     private String loginUsuario;
     private String senhaUsuario;
-    private String grupoUsuario;
+    private int grupoUsuario;
     
     
     public Usuario(){
         
     }
     
-    public Usuario(String nome,String cpf,String email,String telefone,String loginUsuario, String senhaUsuario, String grupoUsuario){
+    public Usuario(String nome,String cpf,String email,String telefone,String loginUsuario, String senhaUsuario,int grupoUsuario,String estado,String bairro,String cidade,String rua,char usStatus){
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
@@ -34,6 +39,12 @@ public class Usuario {
         this.loginUsuario = loginUsuario;
         this.senhaUsuario = senhaUsuario;
         this.grupoUsuario = grupoUsuario;
+        this.estado = estado;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.rua = rua;
+        this.usStatus = usStatus;
+    
     }
     
     public String getNome()
@@ -102,12 +113,51 @@ public class Usuario {
         return this.senhaUsuario;
     }
     
-    public void setGrupoUser(String grupoUsuario){
+    public void setGrupoUser(int grupoUsuario){
         this.grupoUsuario = grupoUsuario;
     }
 
-    public String getGrupoUser(){
+    public int getGrupoUser(){
         return this.grupoUsuario;
     }
    
+    public void setEstado(String estado){
+        this.estado = estado;
+    }
+
+    public String getEstado(){
+        return this.estado;
+    }
+    
+    public void setBairro(String bairro){
+        this.bairro = bairro;
+    }
+
+    public String getBairro(){
+        return this.bairro;
+    }
+    
+    public void setCidade(String cidade){
+        this.cidade = cidade;
+    }
+
+    public String getCidade(){
+        return this.cidade;
+    }
+    
+    public void setRua(String rua){
+        this.rua = rua;
+    }
+
+    public String getRua(){
+        return this.rua;
+    }
+    
+    public void  setUsStatus(char usStatus){
+        this.usStatus = usStatus;
+    }
+    public char getUsStatus(){
+        return this.usStatus;
+    }
+    
 }
