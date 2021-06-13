@@ -114,12 +114,52 @@ public class UsuarioDao {
            ConexaoBanco.closeConnection(conec, stat1, result);
            ConexaoBanco.closeConnection(conec, stat2, result);
            ConexaoBanco.closeConnection(conec, stat3, result);
-       }
-       
+        }
     }
-    
-    //Falta os outros métodos de cadastro
-    
-    
+       
+    //        public void deleteUser(Usuario us) throws ClassNotFoundException{
+    //            Connection conec = ConexaoBanco.getConnection();
+    //            PreparedStatement stat1 = null;
+    //            
+    //            try{
+    //                //criar trigger para usar na deleção do usuario. 
+    //                //Deve ser apagado os dados daS tabela.
+    //                //USUARIOS e USSISTEMA
+    //            }
+    //            
+    //       }
+    public void inativarUser(Usuario us ) throws ClassNotFoundException{
+        Connection conec = ConexaoBanco.getConnection();
+        PreparedStatement stat = null;
+        
+        
+        try{
+           
+            stat= conec.prepareStatement("UPDATE USSISTEMA SET US_STATUS = '?'  WHERE US_ID = ? ");
+            stat.setString(1,"I");
+            stat.setInt(2,us.getUsId());
+        }
+        catch(SQLException ex){
+            String strE = ex.toString();
+           strE += ("\n" + ex.getStackTrace());
+           
+           System.out.println("Ocorreu um erro ao tentar veirificar acesso!\n"
+                               +"Conte o administrador: \n"
+                               +"Código de erro: " + strE);   
+        }
+        catch(Exception ex){
+            String strE = ex.toString();
+           strE += ("\n" + ex.getStackTrace());
+           
+           System.out.println("Ocorreu um erro ao tentar veirificar acesso!\n"
+                               +"Conte o administrador: \n"
+                               +"Código de erro: " + strE);   
+        }finally {
+           ConexaoBanco.closeConnection(conec, stat);
+          
+        }
+        
+        //Verificar se precisa de mais métodos. 
+    }
     
 }

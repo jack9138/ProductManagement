@@ -25,6 +25,7 @@ public class Usuario {
     private String loginUsuario;
     private String senhaUsuario;
     private int grupoUsuario;
+    private int userId;
     
     
     public Usuario(){
@@ -159,5 +160,10 @@ public class Usuario {
     public char getUsStatus(){
         return this.usStatus;
     }
-    
+    public void setUsId(int usId){
+        this.userId = userId;
+    }
+    public int getUsId(){
+        return this.userId;
+    }
 }
