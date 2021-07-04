@@ -9,6 +9,6 @@ package Controles;
  *
  * @author jaque
  */
-public class Relatorio {
+public class RelatorioController {
     
 }

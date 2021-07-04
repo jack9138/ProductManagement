@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="714.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Controles.UsuarioController">
+   <children>
+      <ImageView fitHeight="97.0" fitWidth="227.0" layoutX="263.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/logo.JPG" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtNome" layoutX="54.0" layoutY="217.0" prefHeight="25.0" prefWidth="271.0" />
+      <TextField fx:id="txtRua" layoutX="54.0" layoutY="275.0" prefHeight="15.0" prefWidth="170.0" />
+      <TextField fx:id="txtBairro" layoutX="237.0" layoutY="275.0" prefHeight="25.0" prefWidth="140.0" />
+      <TextField fx:id="txtCidade" layoutX="398.0" layoutY="275.0" prefHeight="25.0" prefWidth="153.0" />
+      <TextField fx:id="txtUF" layoutX="562.0" layoutY="275.0" prefHeight="25.0" prefWidth="35.0" />
+      <TextField fx:id="txtCPF" layoutX="337.0" layoutY="217.0" prefHeight="25.0" prefWidth="161.0" />
+      <Text layoutX="54.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome :" wrappingWidth="104.99998936057091">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="54.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rua: " wrappingWidth="46.962890625">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="237.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bairro:" wrappingWidth="62.265625">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="398.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cidade:" wrappingWidth="62.265625">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="562.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UF:" textAlignment="CENTER" wrappingWidth="26.265625">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtFuncao" layoutX="54.0" layoutY="341.0" prefHeight="25.0" prefWidth="161.0" />
+      <TextField fx:id="txtTelefone" layoutX="510.0" layoutY="217.0" prefHeight="25.0" prefWidth="140.0" />
+      <Text layoutX="337.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF:" wrappingWidth="62.265625">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="54.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Função:" wrappingWidth="62.265625">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="516.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone:" wrappingWidth="62.265625">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtEmail" layoutX="237.0" layoutY="341.0" prefHeight="25.0" prefWidth="200.0" />
+      <Text layoutX="237.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="62.265625">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="cmbGrupoUser" layoutX="466.0" layoutY="341.0" onAction="#onActionCbGrupoUser" prefHeight="25.0" prefWidth="180.0" />
+      <Text layoutX="466.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grupo de Usuário:" wrappingWidth="104.99998563528061">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="231.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Usuário" textAlignment="CENTER" wrappingWidth="252.61111760139465">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnCancelar" layoutX="198.0" layoutY="445.0" mnemonicParsing="false" onAction="#onActionVoltar" prefHeight="25.0" prefWidth="112.0" text="Voltar" />
+      <Button fx:id="btnSalvar" layoutX="381.0" layoutY="445.0" mnemonicParsing="false" onAction="#onActionSalvar" prefHeight="25.0" prefWidth="112.0" text="Salvar" />
+   </children>
+</AnchorPane>

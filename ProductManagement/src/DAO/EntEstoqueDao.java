@@ -5,10 +5,24 @@
  */
 package DAO;
 
-/**
- *
- * @author jaque
- */
+
+
+import ConexaoBD.ConexaoBanco;
+
+import Model.EntEstoque;
+import Model.Produto;
+import Model.MarcaModelo;
+
+import java.sql.*;
+import java.util.*;
+
 public class EntEstoqueDao {
+    //public void adicionaEstoque(){
+    //}
     
+    //public void atualizaEstoque(){
+    //}
+    
+    //public void listarEstoque(){
+    //}
 }

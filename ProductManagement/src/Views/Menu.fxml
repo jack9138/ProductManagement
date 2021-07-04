@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="334.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.MenuController">
+   <children>
+      <ImageView disable="true" fitHeight="199.0" fitWidth="377.0" layoutX="61.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagens/logo.JPG" />
+         </image>
+      </ImageView>
+      <MenuBar prefHeight="25.0" prefWidth="499.0">
+        <menus>
+          <Menu fx:id="menuUsuario" mnemonicParsing="false" text="Usuário">
+            <items>
+              <MenuItem fx:id="btnCadastrarUser" mnemonicParsing="false" onAction="#onActionCadUser" text="Cadastrar Usuaŕio" />
+                  <MenuItem fx:id="btnAtulizarUser" mnemonicParsing="false" onAction="#onActionAtuaUser" text="Atualizar Usuário" />
+            </items>
+          </Menu>
+          <Menu fx:id="menuProduto" mnemonicParsing="false" text="Produto">
+            <items>
+                  <MenuItem fx:id="btnCadastarMarca" mnemonicParsing="false" onAction="#onActionCadMarca" text="Cadastrar Marca" />
+                  <MenuItem fx:id="btnCadastarModelo" mnemonicParsing="false" onAction="#onActionCadModelo" text="Cadastrar Modelo" />
+              <MenuItem fx:id="btnCadastarProduto" mnemonicParsing="false" onAction="#onActionCadProduto" text="Cadastrar Produto" />
+                  <MenuItem fx:id="btnExcluirMarca" mnemonicParsing="false" onAction="#onActionExMarca" text="Excluir Marca" />
+                  <MenuItem fx:id="btnExcluirModelo" mnemonicParsing="false" onAction="#onActionExModelo" text="Excluir Modelo" />
+                  <MenuItem fx:id="btnExcluirProduto" mnemonicParsing="false" onAction="#onActionExcProd" text="Excluir Produto" />
+            </items>
+          </Menu>
+          <Menu fx:id="menuEstoque" mnemonicParsing="false" text="Estoque">
+            <items>
+              <MenuItem fx:id="btnEntradaEstoque" mnemonicParsing="false" onAction="#onActionEntEstoque" text="Entrada de Estoque" />
+                  <MenuItem fx:id="btnSaidaEstoque" mnemonicParsing="false" onAction="#onActionSaidaEst" text="Retirada de Estoque" />
+            </items>
+          </Menu>
+            <Menu fx:id="menuRelatorio" mnemonicParsing="false" text="Relatorios">
+               <items>
+                  <MenuItem fx:id="btnRentradaEst" mnemonicParsing="false" onAction="#onActionRelaEntEsto" text="Entrada de Estoque" />
+                  <MenuItem fx:id="btnRsaidaEst" mnemonicParsing="false" onAction="#onActionRelaSaiEst" text="Saída de Estoque" />
+                  <MenuItem fx:id="btnRComparativo" mnemonicParsing="false" onAction="#onActionRelaCompa" text="Comparativo Entrada e Saída" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <Button fx:id="btnSair" layoutX="200.0" layoutY="287.0" mnemonicParsing="false" onAction="#sairOnAction" prefHeight="25.0" prefWidth="99.0" text="Sair" textAlignment="CENTER">
+         <font>
+            <Font name="Calibri" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
