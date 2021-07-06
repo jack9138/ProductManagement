@@ -215,4 +215,34 @@ public class UsuarioDao {
         }
 
     }
+    
+    public int verificaEmail(String user) throws ClassNotFoundException{
+       Connection conec = BDProductM.getConnection();
+       PreparedStatement stat = null;
+       ResultSet result = null;
+       int verify =  0;
+       
+       try{
+           stat = conec.prepareStatement("SELECT US_ID FROM USSISTEMA WHERE US_LOGIN = ? AND US_STATUS = 'A';");
+           stat.setString(1, user);
+           
+           result = stat.executeQuery();
+           
+           if(result.next()){
+               verify = result.getInt("US_ID");
+           }
+           
+       } catch(SQLException ex){
+           String strE = ex.toString();
+           strE += ("\n" + ex.getStackTrace());
+           
+           System.out.println("Ocorreu um erro ao tentar veirificar acesso!\n"
+                               +"Conte o administrador: \n"
+                               +"Código de erro: " + strE);   
+       }finally {
+           BDProductM.closeConnection(conec, stat, result);
+           
+           return verify;
+       }
+    }
 }

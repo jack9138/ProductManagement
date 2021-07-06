@@ -25,7 +25,8 @@ public class MarcaModeloDao {
             stat = conec.prepareStatement("INSERT INTO MARCA (NOME_MARCA) VALUES(?)");
             
             stat.setString(1,ma.getNomeMarca());
-            stat.executeQuery();
+            stat.execute();
+            
         }catch(SQLException ex){
            String strE = ex.toString();
            strE += ("\n" + ex.getStackTrace());
@@ -49,7 +50,8 @@ public class MarcaModeloDao {
             stat = conec.prepareStatement("INSERT INTO MODELO(NOME_MODELO) VALUES(?)");
             
             stat.setString(1,mo.getNomeModelo());
-            stat.executeQuery();
+            stat.execute();
+            
         }catch(SQLException ex){
            String strE = ex.toString();
            strE += ("\n" + ex.getStackTrace());
@@ -74,6 +76,7 @@ public class MarcaModeloDao {
             
             stat.setInt(1,ma.getIdMarca());
             stat.executeQuery();
+            
         }catch(SQLException ex){
            String strE = ex.toString();
            strE += ("\n" + ex.getStackTrace());
@@ -99,6 +102,7 @@ public class MarcaModeloDao {
             stat.setInt(1,mo.getIdModelo());
             
             stat.executeQuery();
+            
         }catch(SQLException ex){
            String strE = ex.toString();
            strE += ("\n" + ex.getStackTrace());

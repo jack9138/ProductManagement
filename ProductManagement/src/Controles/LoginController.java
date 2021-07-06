@@ -26,7 +26,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import Model.Usuario;
 import javafx.scene.Parent;
-import Controles.EmailController;
+import PacoteEmail.SendEmail;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -63,6 +63,7 @@ public class LoginController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Longin inicializado!");
         user = new Usuario();
+        
     }
     
     @FXML
@@ -130,8 +131,28 @@ public class LoginController implements Initializable {
     
     
     @FXML
-    public void enviarSenha(){
-        EmailController.sendEmail();
+    public void enviarSenha() throws ClassNotFoundException{
+        
+        if(udao.verificaEmail(txtUsuario.getText()) != 0){
+            udao.lerUser(udao.verificaEmail(txtUsuario.getText()));
+        }
+        
+        String endEmail = user.getEmail();
+        SendEmail sendEmail = new SendEmail();
+        sendEmail.setEndEmail(endEmail);
+        
+        //Arrumar essa partte depois
+        if(sendEmail.sendEmail()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Esqueci a Senha");
+            alert.setContentText("Enviado um email com a sua senha para " + endEmail);
+            alert.show();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Esqueci a Senha");
+            alert.setContentText("Ocorreu um erro ao enviar a senha, verifique os dados !");
+            alert.show();
+        }
     }
     
 }

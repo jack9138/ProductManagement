@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -8,26 +9,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="327.0" prefWidth="422.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Controles.MarcaModeloController">
+<AnchorPane id="AnchorPane" prefHeight="327.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.MarcaModeloController">
    <children>
-      <TextField fx:id="txtNome" layoutX="101.0" layoutY="215.0" prefHeight="25.0" prefWidth="220.0" />
-      <ImageView fitHeight="99.0" fitWidth="213.0" layoutX="122.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="txtNomeMarcaModel" layoutX="101.0" layoutY="215.0" prefHeight="25.0" prefWidth="220.0" />
+      <ImageView fitHeight="99.0" fitWidth="213.0" layoutX="116.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Imagens/logo.JPG" />
          </image>
       </ImageView>
-      <Button fx:id="btnCancelar" layoutX="109.0" layoutY="272.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Cancelar" />
-      <Button fx:id="btnSalvar" layoutX="235.0" layoutY="272.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Salvar" />
+      <Button fx:id="btnVoltar" layoutX="109.0" layoutY="272.0" mnemonicParsing="false" onAction="#onActionVoltar" prefHeight="25.0" prefWidth="80.0" text="Voltar" />
+      <Button fx:id="btnSalvar" layoutX="235.0" layoutY="272.0" mnemonicParsing="false" onAction="#onActionSalvar" prefHeight="25.0" prefWidth="80.0" text="Salvar" />
       <Text layoutX="172.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" textAlignment="CENTER" wrappingWidth="73.220703125">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="textCadastrar" layoutX="108.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar " wrappingWidth="220.00000190734863">
-         <font>
-            <Font name="Calibri" size="18.0" />
-         </font>
-      </Text>
+      <Label fx:id="lbMarcModel" layoutX="129.0" layoutY="145.0" prefHeight="25.0" prefWidth="159.0" text="Mensagem" textAlignment="CENTER" />
    </children>
 </AnchorPane>

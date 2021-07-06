@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jaque/Documents/LPIII/PJInterdisciplinar/ProductManagement/src/Views/Menu.fxml</file>
+            <file>file:/C:/Users/jaque/Documents/LPIII/PJInterdisciplinar/ProductManagement/src/Controles/MarcaModeloController.java</file>
             <file>file:/C:/Users/jaque/Documents/LPIII/PJInterdisciplinar/ProductManagement/src/Controles/LoginController.java</file>
+            <file>file:/C:/Users/jaque/Documents/LPIII/PJInterdisciplinar/ProductManagement/src/PacoteEmail/SendEmail.java</file>
+            <file>file:/C:/Users/jaque/Documents/LPIII/PJInterdisciplinar/ProductManagement/src/DAO/UsuarioDao.java</file>
+            <file>file:/C:/Users/jaque/Documents/LPIII/PJInterdisciplinar/ProductManagement/src/PacoteEmail/InterfaceEmail.java</file>
         </group>
     </open-files>
 </project-private>

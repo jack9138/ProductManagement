@@ -108,15 +108,15 @@ public class UsuarioController implements Initializable  {
                 Usuario us = new Usuario();
                 String uscpf = new String();
 
-                us.setNome(txtNome.getText());
-                us.setCPF(txtCPF.getText());
-                us.setEmail(txtEmail.getText());
-                us.setBairro(txtBairro.getText());
-                us.setRua(txtRua.getText());
-                us.setCidade(txtCidade.getText());
-                us.setEstado(txtEstado.getText());
-                us.setTelefone(txtTelefone.getText());
-                us.setFuncao(txtFuncao.getText());
+                us.setNome(txtNome.getText().toUpperCase());
+                us.setCPF(txtCPF.getText().toUpperCase());
+                us.setEmail(txtEmail.getText().toUpperCase());
+                us.setBairro(txtBairro.getText().toUpperCase());
+                us.setRua(txtRua.getText().toUpperCase());
+                us.setCidade(txtCidade.getText().toUpperCase());
+                us.setEstado(txtEstado.getText().toUpperCase());
+                us.setTelefone(txtTelefone.getText().toUpperCase());
+                us.setFuncao(txtFuncao.getText().toUpperCase());
 
                 //Seta o grupo do usuario cadastrado
                 if(cmbGrupoUser.getValue().equals("ADMINISTRADOR")){//Grupo de Adminstrador
@@ -128,8 +128,8 @@ public class UsuarioController implements Initializable  {
                 }
 
                 //Montagem do usuario:
-                user.getChars(0,3, txtNome.getText().toCharArray(),0);
-                uscpf.getChars(0,3,txtCPF.getText().toCharArray(),0);
+                user.getChars(0,3, txtNome.getText().toUpperCase().toCharArray(),0);
+                uscpf.getChars(0,3,txtCPF.getText().toUpperCase().toCharArray(),0);
 
                 us.setLogin(user+uscpf);
 
@@ -144,9 +144,7 @@ public class UsuarioController implements Initializable  {
                 
 
             }catch(Exception ex){
-                //String strE = ex.toString();
-                //strE += ("\n" + ex.getStackTrace());
-
+             
                System.out.println("Ocorreu erro ao cadastrar usuário!\n"
                                    +"Contate o administrador: \n"
                                    +"Codigo de erro: " + ex.getStackTrace()); 
@@ -156,13 +154,13 @@ public class UsuarioController implements Initializable  {
             
             if(cadastro = true){
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                alerta.setTitle("Cadastro");
+                alerta.setTitle("Cadastro Usuario");
                 alerta.setContentText("Usuário cadastrado com sucesso !");
               
             }
             else {
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                alerta.setTitle("Cadastro");
+                alerta.setTitle("Cadastro Usuario");
                 alerta.setContentText("Ocorreu erro ao cadastrar usuário!");
             }
     }

@@ -31,6 +31,8 @@ public class MarcaModelo {
         this.statusModelo = statusModelo;
     }
     
+    
+    
     public void setIdMarca(int idMarca){
         this.idMarca = idMarca;
     }
