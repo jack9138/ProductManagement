@@ -30,11 +30,15 @@ import Controles.MarcaModeloController;
  *
  * @author jaque
  */
-public class MenuController implements Initializable{
+public class MenuController implements Initializable{//Responsavel por controlar o acesso entre as telas. 
 
     
     @FXML
     private MenuItem btnCadastrarUser;
+    
+    
+     @FXML
+    private Text textExcluir;
     
     @FXML
     private MenuItem btnAtulizarUser;
@@ -79,14 +83,38 @@ public class MenuController implements Initializable{
     
   
     
-   @Override
+   @Override//Inicia a tela o Menu
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Menu inicializado!");
         MarcaModeloController marcaModel = new MarcaModeloController();
+        
+        //Verifica qual o tipo de usuário esta logando para definir visibilidade das telas
+//        if("Product Management - Menu - Estoque".equals(stage.getTitle())){
+//            btnCadastrarUser.setVisible(false);
+//            btnAtulizarUser.setVisible(false);
+//            btnCadastarMarca.setVisible(false);
+//            btnCadastarModelo.setVisible(false);
+//            btnExcluirMarca.setVisible(false);
+//            btnExcluirModelo.setVisible(false);
+//            btnExcluirProduto.setVisible(false);
+//        }
+//        else if("Product Management - Menu - RH".equals(stage.getTitle())){
+//            btnCadastrarUser.setVisible(false);
+//            btnCadastarMarca.setVisible(false);
+//            btnCadastarModelo.setVisible(false);
+//            btnExcluirMarca.setVisible(false);
+//            btnExcluirModelo.setVisible(false);
+//            btnCadastarProduto.setVisible(false);
+//            btnExcluirProduto.setVisible(false);
+//            btnEntradaEstoque.setVisible(false);
+//            btnSaidaEstoque.setVisible(false);
+//        }
+        
+        
     }
     
     
-    @FXML
+    @FXML//Chama tela de cadastrar Usuário
     public void onActionCadUser () throws IOException{
         
         try{  
@@ -109,7 +137,7 @@ public class MenuController implements Initializable{
     }
     
     
-    @FXML
+    @FXML//Chama tela de Atualizar usuário
     public void onActionAtuaUser () throws IOException{
         try{  
             Stage stage = new Stage();
@@ -130,7 +158,7 @@ public class MenuController implements Initializable{
     }
     
     
-     @FXML
+    @FXML //Chama tela de cadastro de Marca
     public void onActionCadMarca () throws IOException{
       
         
@@ -150,7 +178,7 @@ public class MenuController implements Initializable{
     }
     
     
-    @FXML
+    @FXML //Chama tela de cadastro de Modelo
     public void onActionCadModelo () throws IOException{
         
         try{
@@ -169,15 +197,13 @@ public class MenuController implements Initializable{
     }
     
     
-    @FXML
+    @FXML //Chama tela de cadastro de Produto
     public void onActionCadProduto() {
     
        try{
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/Views/CadastroProduto.fxml"));
             Parent root = loader.load();
-            
-            
             stage.setTitle("Cadastro - Produto");
             stage.setScene(new Scene(root));
             stage.show();
@@ -187,7 +213,7 @@ public class MenuController implements Initializable{
         
     }
     
-    @FXML
+    @FXML //Chama tela de excluir Marca
     public void onActionExMarca() {
     
         try{
@@ -195,28 +221,31 @@ public class MenuController implements Initializable{
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/Views/ExcluirMarcaModelo.fxml"));
             Parent root = loader.load();
             stage.setTitle("Excluir - Marca");
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(root)); 
             stage.show();
+            
         }catch(IOException  ex){
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
-    @FXML
+    @FXML //Chama tela de excluir Modelo
     public void onActionExModelo() {
     
         try{
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/Views/ExcluirMarcaModelo.fxml"));
             Parent root = loader.load();
-            stage.setTitle("Excluir - Modelo");
+            
+            stage.setTitle("Excluir - Modelo");           
             stage.setScene(new Scene(root));
             stage.show();
+            
         }catch(IOException  ex){
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    @FXML
+    @FXML //Chama tela de cadastro de Modelo
     public void onActionExcProd() {
     
        try{
@@ -230,7 +259,7 @@ public class MenuController implements Initializable{
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    @FXML
+    @FXML //Chama tela de cadastro Estoque
     public void onActionEntEstoque() {
         try{
             Stage stage = new Stage();
@@ -244,7 +273,7 @@ public class MenuController implements Initializable{
         }
         
     }
-    @FXML
+    @FXML //Chama tela para realizar retirada de estoque
     public void onActionSaidaEst() {
     
         try{
@@ -258,7 +287,7 @@ public class MenuController implements Initializable{
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    @FXML
+    @FXML //Chama tela de Relatorio de Entrada Estoque
     public void onActionRelaEntEsto() {
     
         try{
@@ -273,7 +302,7 @@ public class MenuController implements Initializable{
         }
         
     }
-    @FXML
+    @FXML //Chama tela de Relatorio de Saida Estoque
     public void onActionRelaSaiEst() {
     
         try{
@@ -288,7 +317,7 @@ public class MenuController implements Initializable{
         }
         
     }
-    @FXML
+    @FXML //Chama tela de Relatorio Comparativo
     public void onActionRelaCompa() {
     
         try{
@@ -304,7 +333,7 @@ public class MenuController implements Initializable{
         
     }
     
-    @FXML
+    @FXML //Sai da tela Menu e fecha programa
     public void sairOnAction() {
     
         Stage stage = (Stage) btnSair.getScene().getWindow();

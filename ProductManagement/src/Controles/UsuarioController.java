@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import DAO.UsuarioDao;
 import Model.Usuario;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -143,11 +144,11 @@ public class UsuarioController implements Initializable  {
                 
                 
 
-            }catch(Exception ex){
+            }catch(ClassNotFoundException ex){
              
                System.out.println("Ocorreu erro ao cadastrar usuário!\n"
                                    +"Contate o administrador: \n"
-                                   +"Codigo de erro: " + ex.getStackTrace()); 
+                                   +"Codigo de erro: " + Arrays.toString(ex.getStackTrace())); 
                
                cadastro = false;
             }

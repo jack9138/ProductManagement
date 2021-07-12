@@ -13,11 +13,11 @@ import java.util.ArrayList;
  * @author jaque
  */
 
-public class EntEstoque{
+public class EntEstoque{ 
     
     private int idEstoque;
-    private List<Produto> produtos = new ArrayList<Produto>();
-    private Date dataEntrada;
+    private Produto produto;
+    private String dataEntrada;
     private int qtdTotalEntrada;
     private double valorTotalEstoque;
     private Usuario userEntrada;
@@ -27,9 +27,9 @@ public class EntEstoque{
         
     }
     
-     public EntEstoque(int idEstoque, List<Produto> produto, Date dataEntrada, int qtdTotalEntrada, double valorTotalEntrada, Usuario userEntrada ){
+     public EntEstoque(int idEstoque, Produto produto, String dataEntrada, int qtdTotalEntrada, double valorTotalEntrada, Usuario userEntrada ){
         this.idEstoque = idEstoque;
-        this.produtos = produtos;
+        this.produto = produto;
         this.dataEntrada = dataEntrada;
         this.qtdTotalEntrada = qtdTotalEntrada;
         this.valorTotalEstoque = valorTotalEstoque;
@@ -45,20 +45,20 @@ public class EntEstoque{
         return this.idEstoque;
     }
     
-    public void setProdutos(List<Produto> produtos){
-        this.produtos = produtos;
+    public void setProduto(Produto produto){
+        this.produto = produto;
     }
     
-    public List<Produto> getProdutos(){
-        return this.produtos;
+    public Produto getProdutos(){
+        return (Produto) this.produto;
     }
     
     
-    public void setDataEntrada(Date dataEntrada){
+    public void setDataEntrada(String dataEntrada){
         this.dataEntrada = dataEntrada;
     }
     
-    public Date getDataEntrada(){
+    public String getDataEntrada(){
         return this.dataEntrada;
     }
      

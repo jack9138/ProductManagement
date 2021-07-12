@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class SaiEstoque {
     private int idEstoque;
-    private List<Produto> produtos = new ArrayList<Produto>();
-    private Date dataSaiEstoque;
+    private Produto produto ;
+    private String dataSaiEstoque;
     private int qtdTotalSaiEstoque;
     private double valorTSaiEstoque;
     private Usuario userSaiEntrada;
@@ -26,9 +26,9 @@ public class SaiEstoque {
         
     }
     
-     public SaiEstoque(int idEstoque, List<Produto> produto, Date dataSaiEstoque, int qtdTotalSaiEstoque, double valorTSaiEstoque, Usuario userSaiEntrada ){
+     public SaiEstoque(int idEstoque, Produto produto, String dataSaiEstoque, int qtdTotalSaiEstoque, double valorTSaiEstoque, Usuario userSaiEntrada ){
         this.idEstoque = idEstoque;
-        this.produtos = produtos;
+        this.produto = produto;
         this.dataSaiEstoque = dataSaiEstoque;
         this.qtdTotalSaiEstoque = qtdTotalSaiEstoque;
         this.valorTSaiEstoque = valorTSaiEstoque;
@@ -44,28 +44,28 @@ public class SaiEstoque {
         return this.idEstoque;
     }
     
-    public void setProdutos(List<Produto> produtos){
-        this.produtos = produtos;
+    public void setProduto(Produto produto){
+        this.produto = produto;
     }
     
-    public List<Produto> getProdutos(){
-        return this.produtos;
+    public Produto getProdutos(){
+        return this.produto;
     }
     
     
-    public void setDataSaiEntrada(Date dataSaiEstoque){
+    public void setDataSai(String dataSaiEstoque){
         this.dataSaiEstoque = dataSaiEstoque;
     }
     
-    public Date getDataSaiEntrada(){
+    public String getDataSai(){
         return this.dataSaiEstoque;
     }
      
-    public void setQtdTSaiEntrada(int qtdTotalSaiEstoque){
+    public void setQtdTSai(int qtdTotalSaiEstoque){
         this.qtdTotalSaiEstoque = qtdTotalSaiEstoque;
     }
     
-    public int getQtdTSaiEntrada(){
+    public int getQtdTSai(){
         return this.qtdTotalSaiEstoque;
     }
     
@@ -77,11 +77,11 @@ public class SaiEstoque {
         return this.valorTSaiEstoque;
     }
    
-    public void setUserSaiEntrada(Usuario userSaiEntrada){
+    public void setUserSai(Usuario userSaiEntrada){
         this.userSaiEntrada = userSaiEntrada;
     }
     
-    public Usuario getUserSaiEntrada(){
+    public Usuario getUserSai(){
         return this.userSaiEntrada;
     }
 }

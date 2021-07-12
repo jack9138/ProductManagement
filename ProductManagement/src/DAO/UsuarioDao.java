@@ -47,12 +47,10 @@ public class UsuarioDao {
            }
            
        } catch(SQLException ex){
-           String strE = ex.toString();
-           strE += ("\n" + ex.getStackTrace());
-           
            System.out.println("Ocorreu um erro ao tentar veirificar acesso!\n"
                                +"Conte o administrador: \n"
-                               +"Código de erro: " + strE);   
+                               +"Código de erro: \n");   
+           ex.printStackTrace();
        }finally {
            BDProductM.closeConnection(conec, stat, result);
            

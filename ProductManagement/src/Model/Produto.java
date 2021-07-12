@@ -13,7 +13,6 @@ public class Produto {
     
     private int idProduto;//Mudar tabela, para ID do produto ser gerado a partir de uma proc/function
     private String nomeProduto;
-    private String descriProduto;
     private String corProd;
     private double valorProduto;
     private int tamanho;
@@ -28,7 +27,6 @@ public class Produto {
     
     public Produto(String nomeProduto, String descriProduto, String cor,double valorProduto,MarcaModelo marca,MarcaModelo modelo,int tamanho,int idProduto,String prodStatus){
         this.nomeProduto = nomeProduto;
-        this.descriProduto = descriProduto;
         this.corProd = corProd;
         this.valorProduto = valorProduto; 
         this.tamanho = tamanho;
@@ -51,14 +49,6 @@ public class Produto {
     
     public String getNomeProduto(){
         return this.nomeProduto;
-    }
-    
-    public void setDescProd(String descriProduto){
-        this.descriProduto = descriProduto;
-    }
-    
-    public String getDescProd(){
-        return this.descriProduto;
     }
     
     public void setValor(double valorProduto){

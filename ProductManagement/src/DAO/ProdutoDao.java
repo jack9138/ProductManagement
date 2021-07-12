@@ -21,11 +21,15 @@ public class ProdutoDao {
     private UsuarioDao usrDAO = new UsuarioDao();
     private MarcaModelo marcMod = new MarcaModelo();
     
-    
-    public void adicionaProduto(Produto p) throws ClassNotFoundException{
+    //Método para adicionar Produto no Banco de Dados
+    public boolean adicionaProduto(Produto p) throws ClassNotFoundException{
         Connection conec = BDProductM.getConnection();
         PreparedStatement stat = null;
         PreparedStatement stat1 = null;
+        PreparedStatement stat2 = null;
+        ResultSet result = null;
+        
+        boolean cadastrado = false; 
         
         LocalDate dataLocal = LocalDate.now();
         DateTimeFormatter formtData = DateTimeFormatter.ofPattern("2021-02-28");
@@ -40,39 +44,127 @@ public class ProdutoDao {
             stat.setInt(4,p.getModelo().getIdModelo());
             stat.setInt(5,p.getMarca().getIdMarca());
             
-            stat1 = conec.prepareStatement("INSERT INTO PRECOPRODUTO(COD_PRODUTO,COD_MARCA,COD_MODELO,PREC_UNIDADE,PREC_STATUS,DATA_REGISTRO)"
+            stat.execute();
+            
+            stat1 = conec.prepareStatement("SELECT MAX(PROD_ID) PROD_ID FROM PRODUTO;");
+            
+            result = stat1.executeQuery();
+            result.next();
+            int id_prod = result.getInt("PROD_ID");
+            
+            p.setIdProduto(id_prod);
+ 
+            stat2 = conec.prepareStatement("INSERT INTO PRECOPRODUTO(COD_PRODUTO,COD_MARCA,COD_MODELO,PREC_UNIDADE,PREC_STATUS,DATA_REGISTRO)"
                                             + "VALUES(?,?,?,?,?,?);");
-            stat1.setInt(1,p.getIdProduto());
-            stat1.setInt(2,p.getMarca().getIdMarca());
-            stat1.setInt(3,p.getModelo().getIdModelo());
-            stat1.setDouble(4, p.getValor());
-            stat1.setString(5, p.getProdStatus());
-            stat1.setString(6,dataFormatada);
+            stat2.setInt(1,p.getIdProduto());
+            stat2.setInt(2,p.getMarca().getIdMarca());
+            stat2.setInt(3,p.getModelo().getIdModelo());
+            stat2.setDouble(4, p.getValor());
+            stat2.setString(5, p.getProdStatus());
+            stat2.setString(6,dataFormatada);
+            
+            stat2.execute();
+            
+            cadastrado = true;
             
         }catch(SQLException ex){
            String strE = ex.toString();
-           strE += ("\n" + ex.getStackTrace());
+           strE += ("\n" + Arrays.toString(ex.getStackTrace()));
            
            System.out.println("Ocorreu um erro ao tentar veirificar acesso!\n"
                                +"Conte o administrador: \n"
-                               +"Código de erro: " + strE);   
+                               +"Código de erro: " + strE); 
+           cadastrado = false;
+           
+           
        }finally {
-           BDProductM.closeConnection(conec, stat);
+           BDProductM.closeConnection(conec, stat,result);
            BDProductM.closeConnection(conec, stat1);
+           BDProductM.closeConnection(conec, stat2);
            
        }
-        
+         return cadastrado;
+         
     }
     
-    //public void deletarProduto(Produto p){
-          //Fazer trigger  ou proc pra deletar produto.  
-    //}
+    //Método para deletar produtos
+    public boolean deletarProduto(Produto p){
+        Connection conec = BDProductM.getConnection();
+        PreparedStatement stat = null;
+        PreparedStatement stat1 = null;
+        ResultSet result = null;
+        
+        boolean excluido = false;
+        try{
+            
+            stat = conec.prepareStatement("DELETE FROM PRODUTO WHERE PROD_ID = ?");
+            //Verificar se o produto possui estoque antes de excluir 
+            stat1 = conec.prepareStatement("SELECT COUNT(COD_PRODUTO) FROM ESTOQUE WHERE COD_PRODUTO = ? AND QTD_ENTRADAPRODUTO > 0;");
+            result = stat1.executeQuery();
+            if(!result.next()){
+                
+                stat.setInt(1, p.getIdProduto());
+                stat.execute();
+                
+                excluido = true;
+            }
+            
+        }catch(SQLException ex){
+            String strE = ex.toString();
+            strE += ("\n" + Arrays.toString(ex.getStackTrace()));
+           
+            System.out.println("Ocorreu um erro ao tentar veirificar acesso!\n"
+                               +"Conte o administrador: \n"
+                               +"Código de erro: " + strE); 
+            
+        }finally{
+           BDProductM.closeConnection(conec, stat,result);
+           BDProductM.closeConnection(conec, stat1);
+        }
+        return excluido;
+    }
     
+    //Método para listagem de produtos cadastrados
+    public List<Produto> listarProduto() throws ClassNotFoundException, SQLException{
+        Connection conec = BDProductM.getConnection();
+        PreparedStatement stat = null;
+        ResultSet res = null;
+        List<Produto> listProduto = new ArrayList();
+        
+        try{//Usa a View para listar os produtos
+            stat = conec.prepareStatement("SELECT * FROM V_LIST_PRODUTOS;");
+            
+            res = stat.executeQuery();
+            
+            while(res.next()){
+                Produto prod = new  Produto();
+                MarcaModelo marc = new  MarcaModelo();
+                prod.setIdProduto(res.getInt("P_ID")); //P_ID, P_NOME,P_TAM,P_COR,P_MODELO,P_MARCA,M_NOMEMODELO,M_NOMEMARCA
+                prod.setNomeProduto(res.getString("P_NOME").toUpperCase());
+                prod.setCorProd(res.getString("P_COR"));
+                marc.setIdMarca(res.getInt("P_MODELO"));
+                marc.setNomeModelo(res.getString("M_NOMEMODELO"));
+                marc.setIdModelo(res.getInt("P_MARCA"));
+                marc.setNomeMarca(res.getString("M_NOMEMARCA"));
+                prod.setMarca(marc);
+                prod.setModelo(marc);
+                
+                listProduto.add(prod);
+            }
   
-    //public void listarProduto(Produto p){
-          //Fazer proc ou view para listar todos os produtos.  
-    //}
+        }catch(SQLException ex){
+
+           System.out.println("Ocorreu um erro ao tentar veirificar acesso!\n"
+                               +"Conte o administrador: \n"
+                               +"Código de erro: " + ex.getStackTrace());  
+       }finally {
+           BDProductM.closeConnection(conec, stat,res);
+           
+       }
+        return listProduto;
+    }
     
+    //Método para atualizar Produto
     //public void atualizarPrecoProduto(Produto p){
           //Fazer procedure ou trigger para chamar e realizar atualização.   
     //}

@@ -71,11 +71,11 @@ public class LoginController implements Initializable {
         
         if (udao.verificaLogin(txtUsuario.getText(), txtSenha.getText()) != 0){
             
-            int usr_id = udao.verificaLogin(txtUsuario.getText(), txtSenha.getText());
+            int usr_id = udao.verificaLogin(txtUsuario.getText().toUpperCase(), txtSenha.getText());
             
             user = udao.lerUser(usr_id);
-            
-            if(user != null){
+            //Verifica o usuário e o grupo para conseguir Bloquear as telas de acesso; 
+            if(user != null && user.getGrupoUser() == 1){
                
                 try{  
                     Stage stage = new Stage();
@@ -85,7 +85,54 @@ public class LoginController implements Initializable {
                     root.setControllerFactory(c -> {
                       return new MenuController();
                     });
-                    stage.setTitle("Product Management - Menu");
+                    stage.setTitle("Product Management - Menu - Administrador");
+                    stage.setScene(new Scene(root.load(), stage.getWidth(), stage.getHeight()));
+                    stage.setResizable(false);
+                    stage.setWidth(500.0);
+                    stage.setHeight(400.0);
+                    stage.show();
+                    System.out.println("Longin efetuado!");
+                    
+                    
+                    
+                }catch(IOException  ex){
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else if (user != null && user.getGrupoUser() == 2){
+                try{  
+                    Stage stage = new Stage();
+                    stage = (Stage) btnEntrar.getScene().getWindow();
+                    
+                    FXMLLoader root = new FXMLLoader(getClass().getResource("/Views/Menu.fxml"));
+                    root.setControllerFactory(c -> {
+                      return new MenuController();
+                    });
+                    stage.setTitle("Product Management - Menu - Estoque");
+                    stage.setScene(new Scene(root.load(), stage.getWidth(), stage.getHeight()));
+                    stage.setResizable(false);
+                    stage.setWidth(500.0);
+                    stage.setHeight(400.0);
+                    stage.show();
+                    
+                    System.out.println("Longin efetuado!");
+                    
+                    
+                    
+                }catch(IOException  ex){
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else if(user != null && user.getGrupoUser() == 3){
+                try{  
+                    Stage stage = new Stage();
+                    stage = (Stage) btnEntrar.getScene().getWindow();
+                    
+                    FXMLLoader root = new FXMLLoader(getClass().getResource("/Views/Menu.fxml"));
+                    root.setControllerFactory(c -> {
+                      return new MenuController();
+                    });
+                    stage.setTitle("Product Management - Menu - RH");
                     stage.setScene(new Scene(root.load(), stage.getWidth(), stage.getHeight()));
                     stage.setResizable(false);
                     stage.setWidth(500.0);
@@ -100,8 +147,8 @@ public class LoginController implements Initializable {
                 }
             }
             
-          txtUsuario.clear();
-          txtSenha.clear();  
+          //txtUsuario.clear();
+          //txtSenha.clear();  
             
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -133,13 +180,13 @@ public class LoginController implements Initializable {
     @FXML
     public void enviarSenha() throws ClassNotFoundException{
         
-        if(udao.verificaEmail(txtUsuario.getText()) != 0){
+        if(udao.verificaEmail(txtUsuario.getText().toUpperCase()) != 0){
             udao.lerUser(udao.verificaEmail(txtUsuario.getText()));
         }
         
         String endEmail = user.getEmail();
         SendEmail sendEmail = new SendEmail();
-        sendEmail.setEndEmail(endEmail);
+        sendEmail.setEndEmail(endEmail.toLowerCase());
         
         //Arrumar essa partte depois
         if(sendEmail.sendEmail()){

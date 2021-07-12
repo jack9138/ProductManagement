@@ -29,7 +29,7 @@ public class MarcaModeloDao {
             
         }catch(SQLException ex){
            String strE = ex.toString();
-           strE += ("\n" + ex.getStackTrace());
+           strE += ("\n" + Arrays.toString(ex.getStackTrace()));
            
            System.out.println("Ocorreu um erro ao tentar veirificar acesso!\n"
                                +"Conte o administrador: \n"
@@ -66,16 +66,27 @@ public class MarcaModeloDao {
         
     }
     //Deletar marcar
-    public void removeMarca(MarcaModelo ma) throws ClassNotFoundException{
+    public boolean removeMarca(MarcaModelo ma) throws ClassNotFoundException{
         Connection conec = BDProductM.getConnection();
         PreparedStatement stat = null;
-        
+        PreparedStatement stat1 = null;
+        ResultSet res = null;
+        boolean excluido = false;
         
         try{
-            stat = conec.prepareStatement("DELETE FROM MARCA WHERE ID_MARCA = ?");
             
-            stat.setInt(1,ma.getIdMarca());
-            stat.executeQuery();
+            stat1 = conec.prepareStatement(" SELECT COUNT(COD_MARCA) FROM ESTOQUE  WHERE COD_PRODUTO IN(SELECT PROD_ID FROM PRODUTO WHERE PROD_MARCA = ?);");
+            stat1.setInt(1,ma.getIdMarca());
+            res = stat1.executeQuery();
+            
+            if(!res.next()){
+                stat = conec.prepareStatement("DELETE FROM MARCA WHERE ID_MARCA = ?");
+            
+                stat.setInt(1,ma.getIdMarca());
+                stat.execute();
+                excluido = true;
+            }
+           
             
         }catch(SQLException ex){
            String strE = ex.toString();
@@ -84,24 +95,34 @@ public class MarcaModeloDao {
            System.out.println("Ocorreu um erro ao tentar veirificar acesso!\n"
                                +"Conte o administrador: \n"
                                +"Código de erro: " + strE);   
+           excluido = false;
        }finally {
-           BDProductM.closeConnection(conec, stat);
-            
+           BDProductM.closeConnection(conec, stat); 
        }
-        
+        return excluido;
     }
     //Deletar  modelo
-    public void removeModelo(MarcaModelo mo) throws ClassNotFoundException{
+    public boolean removeModelo(MarcaModelo mo) throws ClassNotFoundException{
         Connection conec = BDProductM.getConnection();
         PreparedStatement stat = null;
-        
-        
+        PreparedStatement stat1 = null;
+        ResultSet res = null;
+        boolean excluido = false;
         try{
-            stat = conec.prepareStatement("DELETE FROM MODELO WHERE ID_MODELOR = ?");
             
-            stat.setInt(1,mo.getIdModelo());
+            stat1 = conec.prepareStatement(" SELECT COUNT(COD_MODELO) FROM ESTOQUE  WHERE COD_PRODUTO IN(SELECT PROD_ID FROM PRODUTO WHERE PROD_MODELO = ?);");
+            stat1.setInt(1,mo.getIdModelo());
+            res = stat1.executeQuery();
             
-            stat.executeQuery();
+            if(!res.next()){
+                stat = conec.prepareStatement("DELETE FROM MODELO WHERE NOME_MODELO ='?'");
+            
+                stat.setInt(1,mo.getIdModelo());
+            
+                stat.execute();
+                excluido = true;
+            }
+            
             
         }catch(SQLException ex){
            String strE = ex.toString();
@@ -110,15 +131,16 @@ public class MarcaModeloDao {
            System.out.println("Ocorreu um erro ao tentar veirificar acesso!\n"
                                +"Conte o administrador: \n"
                                +"Código de erro: " + strE);   
+           excluido = false;
        }finally {
-           BDProductM.closeConnection(conec, stat);
-            
+           BDProductM.closeConnection(conec, stat);    
+           BDProductM.closeConnection(conec,stat1, res);
        }
-        
+        return excluido; 
     }
     
     //Listar as Marcas
-    public List<MarcaModelo> listMarca (MarcaModelo ma, int seleMarca) throws ClassNotFoundException{
+    public List<MarcaModelo> listMarca () throws ClassNotFoundException{
         Connection conec = BDProductM.getConnection();
         PreparedStatement stat = null;
         ResultSet res = null;
@@ -127,47 +149,30 @@ public class MarcaModeloDao {
         try{
            
             //selecionar todas as marcas. 0 significa todas, passado valor significa o id marca
-            if(seleMarca != 0 ){
-              stat = conec.prepareStatement("SELECT ID_MARCA, NOME_MARCA  FROM MARCA"); 
+              stat = conec.prepareStatement("SELECT ID_MARCA,NOME_MARCA FROM MARCA ORDER BY ID_MARCA ASC;"); 
               res = stat.executeQuery();
               
               while(res.next()){
                 MarcaModelo marc = new  MarcaModelo();
-                marc.setIdMarca(res.getInt("Id"));
-                marc.setNomeMarca(res.getString("MarcaN"));
+                marc.setIdMarca(res.getInt("ID_MARCA"));
+                marc.setNomeMarca(res.getString("NOME_MARCA"));
                 listMarc.add(marc);
               }
-            }
-            else{
-              stat = conec.prepareStatement("SELECT ID_MARCA, NOME_MARCA  FROM MARCA WHERE ID_MARCA = ?"); 
-              stat.setInt(1, seleMarca);
-              
-              res = stat.executeQuery();
-                while(res.next()){
-                    MarcaModelo marc = new  MarcaModelo();  
-                    marc.setIdMarca(res.getInt("Id"));
-                    marc.setNomeMarca(res.getString("MarcaN"));
-                    listMarc.add(marc);
-                } 
-            }
-
         }
         catch(SQLException ex){
-           String strE = ex.toString();
-           strE += ("\n" + ex.getStackTrace());
            
            System.out.println("Ocorreu um erro ao tentar veirificar acesso!\n"
                                +"Conte o administrador: \n"
-                               +"Código de erro: " + strE);   
+                               +"Código de erro: " + ex.getStackTrace());   
        }finally {
-           BDProductM.closeConnection(conec, stat);
+           BDProductM.closeConnection(conec, stat,res);
             
        }
         return listMarc;
     }
     
     //Listar os modelos cadastrados
-    public List<MarcaModelo> listModelo (MarcaModelo mo, int seleMarca) throws ClassNotFoundException{
+    public List<MarcaModelo> listModelo () throws ClassNotFoundException{
         Connection conec = BDProductM.getConnection();
         PreparedStatement stat = null;
         ResultSet res = null;
@@ -176,42 +181,30 @@ public class MarcaModeloDao {
         try{
            
             //selecionar todas as marcas. 0 significa todas, passado valor significa o id marca
-            if(seleMarca != 0 ){
-              stat = conec.prepareStatement("SELECT ID_MARCA, NOME_MARCA  FROM MARCA"); 
+            
+              stat = conec.prepareStatement("SELECT ID_MODELO,NOME_MODELO FROM MODELO ORDER BY ID_MODELO ASC"); 
               res = stat.executeQuery();
               
               while(res.next()){
                 MarcaModelo mode = new  MarcaModelo();  
-                mode.setIdModelo(res.getInt("Id"));
-                mode.setNomeModelo(res.getString("MarcaN"));
+                mode.setIdModelo(res.getInt("ID_MODELO"));
+                mode.setNomeModelo(res.getString("NOME_MODELO"));
                 listMode.add(mode);
               }
-            }
-            else{
-              stat = conec.prepareStatement("SELECT ID_MARCA, NOME_MARCA  FROM MARCA WHERE ID_MARCA = ?"); 
-              stat.setInt(1, seleMarca);
-              
-              res = stat.executeQuery();
-                while(res.next()){
-                    MarcaModelo mode = new  MarcaModelo();  
-                    mode.setIdModelo(res.getInt("Id"));
-                    mode.setNomeModelo(res.getString("MarcaN"));
-                    listMode.add(mode);
-                } 
-            }
-
+          
         }
         catch(SQLException ex){
            String strE = ex.toString();
-           strE += ("\n" + ex.getStackTrace());
+           strE += ("\n" + Arrays.toString(ex.getStackTrace()));
            
            System.out.println("Ocorreu um erro ao tentar veirificar acesso!\n"
                                +"Conte o administrador: \n"
                                +"Código de erro: " + strE);   
        }finally {
-           BDProductM.closeConnection(conec, stat);
+           BDProductM.closeConnection(conec, stat,res);
             
        }
+        
         return listMode;
     }
     
