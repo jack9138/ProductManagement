@@ -29,9 +29,7 @@ Strategy: Padrão comportamental, que será introduzido na parte de Controller.
                                                                  Diagrama de Contexto
 
 
-div align="center"
-img src="https://user-images.githubusercontent.com/62843971/137044568-0e691e9f-b5d4-4545-8a76-9d29069f88ce.png" width="0px" /
-/div
+![Diagrama de contexto - C4MODEL](https://user-images.githubusercontent.com/62843971/137044568-0e691e9f-b5d4-4545-8a76-9d29069f88ce.png)
 
 
 
@@ -39,11 +37,7 @@ img src="https://user-images.githubusercontent.com/62843971/137044568-0e691e9f-b
                                                                  (Padrões de Projeto)
 Observer
 
-div align="center"
-img src="https://user-images.githubusercontent.com/62843971/137044198-16bdeb2f-dfba-4a2d-8e2e-ed38c9a66fcd.PNG" width="0px" /
-/div
+![observer](https://user-images.githubusercontent.com/62843971/137044198-16bdeb2f-dfba-4a2d-8e2e-ed38c9a66fcd.PNG)
 
 Strategy
-div align="center"
-img src="https://user-images.githubusercontent.com/62843971/137044345-a1840a66-845b-4235-8bc7-a57d407b85e5.PNG" width="0px" /
-/div
+![strategy](https://user-images.githubusercontent.com/62843971/137044345-a1840a66-845b-4235-8bc7-a57d407b85e5.PNG)
