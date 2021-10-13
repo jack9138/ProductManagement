@@ -35,9 +35,10 @@ Strategy: Padrão comportamental, que será introduzido na parte de Controller.
 
                                                                  Diagrama de classes
                                                                  (Padrões de Projeto)
-Observer
+                                                                      Observer
 
 ![observer](https://user-images.githubusercontent.com/62843971/137044198-16bdeb2f-dfba-4a2d-8e2e-ed38c9a66fcd.PNG)
 
-Strategy
+                                                                      Strategy
+
 ![strategy](https://user-images.githubusercontent.com/62843971/137044345-a1840a66-845b-4235-8bc7-a57d407b85e5.PNG)
