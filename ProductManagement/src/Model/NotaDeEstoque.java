@@ -11,7 +11,7 @@ package Model;
  */
 import java.util.Date;
 
-public class NotaFiscal extends Produto {
+public class NotaDeEstoque {
     
     private String naturezaOperacao; //Fazer uma classe que identifica os tipos de operações
     private Date dataNota;
@@ -21,10 +21,10 @@ public class NotaFiscal extends Produto {
     
     
     //construtor padrão vazio para não dar erro
-    public NotaFiscal(){
+    public NotaDeEstoque(){
         
     }
-    public NotaFiscal(String naturezaOperacao,Date dataNota, String cnpj,double valorItem, double valorTotalNota){
+    public NotaDeEstoque(String naturezaOperacao,Date dataNota, String cnpj,double valorItem, double valorTotalNota){
         
         this.naturezaOperacao = naturezaOperacao;
         this.dataNota = dataNota;

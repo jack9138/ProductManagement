@@ -13,6 +13,8 @@ import Model.SaiEstoque;
 import Model.Usuario;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -77,11 +79,12 @@ public class EstoqueController implements Initializable{
     }
     
     //Salva as informações de cadastro do estoque
-    public void onActionSalvar() throws ClassNotFoundException{
+    public void onActionSalvar() throws ClassNotFoundException, ParseException{
         Stage stage = (Stage) btnSalvar.getScene().getWindow();
-        //Pega a hora local para salvar no banco
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String data = dtf.format(LocalDateTime.now());
+        //Pega a hora local para salvar no banco 
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+        Date data;
+        data = formato.parse(LocalDateTime.now().toString());
         
         Produto prod = new Produto();
         String selectProd =  cmbProdutos.getSelectionModel().getSelectedItem().toString();

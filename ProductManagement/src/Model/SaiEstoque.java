@@ -16,7 +16,7 @@ import java.util.List;
 public class SaiEstoque {
     private int idEstoque;
     private Produto produto ;
-    private String dataSaiEstoque;
+    private Date dataSaiEstoque;
     private int qtdTotalSaiEstoque;
     private double valorTSaiEstoque;
     private Usuario userSaiEntrada;
@@ -26,7 +26,7 @@ public class SaiEstoque {
         
     }
     
-     public SaiEstoque(int idEstoque, Produto produto, String dataSaiEstoque, int qtdTotalSaiEstoque, double valorTSaiEstoque, Usuario userSaiEntrada ){
+     public SaiEstoque(int idEstoque, Produto produto, Date dataSaiEstoque, int qtdTotalSaiEstoque, double valorTSaiEstoque, Usuario userSaiEntrada ){
         this.idEstoque = idEstoque;
         this.produto = produto;
         this.dataSaiEstoque = dataSaiEstoque;
@@ -53,11 +53,11 @@ public class SaiEstoque {
     }
     
     
-    public void setDataSai(String dataSaiEstoque){
+    public void setDataSai(Date dataSaiEstoque){
         this.dataSaiEstoque = dataSaiEstoque;
     }
     
-    public String getDataSai(){
+    public Date getDataSai(){
         return this.dataSaiEstoque;
     }
      

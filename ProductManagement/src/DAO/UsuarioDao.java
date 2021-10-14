@@ -170,17 +170,6 @@ public class UsuarioDao {
         }
     }
        
-    //        public void deleteUser(Usuario us) throws ClassNotFoundException{
-    //            Connection conec = ConexaoBanco.getConnection();
-    //            PreparedStatement stat1 = null;
-    //            
-    //            try{
-    //                //criar trigger para usar na deleção do usuario. 
-    //                //Deve ser apagado os dados daS tabela.
-    //                //USUARIOS e USSISTEMA
-    //            }
-    //            
-    //       }
     public void inativarUser(Usuario us ) throws ClassNotFoundException{
         Connection conec = BDProductM.getConnection();
         PreparedStatement stat = null;

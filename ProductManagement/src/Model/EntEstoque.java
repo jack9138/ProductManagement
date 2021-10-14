@@ -17,7 +17,7 @@ public class EntEstoque{
     
     private int idEstoque;
     private Produto produto;
-    private String dataEntrada;
+    private Date dataEntrada;
     private int qtdTotalEntrada;
     private double valorTotalEstoque;
     private Usuario userEntrada;
@@ -27,7 +27,7 @@ public class EntEstoque{
         
     }
     
-     public EntEstoque(int idEstoque, Produto produto, String dataEntrada, int qtdTotalEntrada, double valorTotalEntrada, Usuario userEntrada ){
+     public EntEstoque(int idEstoque, Produto produto, Date dataEntrada, int qtdTotalEntrada, double valorTotalEntrada, Usuario userEntrada ){
         this.idEstoque = idEstoque;
         this.produto = produto;
         this.dataEntrada = dataEntrada;
@@ -54,11 +54,11 @@ public class EntEstoque{
     }
     
     
-    public void setDataEntrada(String dataEntrada){
+    public void setDataEntrada(Date dataEntrada){
         this.dataEntrada = dataEntrada;
     }
     
-    public String getDataEntrada(){
+    public Date getDataEntrada(){
         return this.dataEntrada;
     }
      
