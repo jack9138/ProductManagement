@@ -120,8 +120,8 @@ public class EstoqueController implements Initializable{
     public void carregarProdutos() throws ClassNotFoundException, SQLException{
         
         List<String> listaProd = new ArrayList<>();
-        
-        prodData = prodDao.listarProduto();
+        Produto prod = new Produto();
+        prodData = prodDao.GetProduto(prod);
         
         for(int i = 0; i < prodData.size(); i++){ 
             listaProd.add(prodData.get(i).getNomeProduto());

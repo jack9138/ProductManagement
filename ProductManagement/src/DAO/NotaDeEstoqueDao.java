@@ -11,6 +11,6 @@ package DAO;
  *
  * @author jaque
  */
-public class NotaFiscalDao {
+public class NotaDeEstoqueDao {
     
 }

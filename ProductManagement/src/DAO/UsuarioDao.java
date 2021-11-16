@@ -108,68 +108,84 @@ public class UsuarioDao {
     
     
     
-    public void cadastraUsuario(Usuario us) throws ClassNotFoundException{
+    public boolean cadastraUsuario(Usuario us) throws ClassNotFoundException, SQLException, Exception{
        Connection conec = BDProductM.getConnection();
        PreparedStatement stat1 = null;
        PreparedStatement stat2 = null;
        PreparedStatement stat3 = null;
        ResultSet result = null;
-       
+       boolean cadEfect = false;
        try{
-           //inserção de dados na tabela de usuario
-           stat1 = conec.prepareStatement("INSERT INTO USUARIOS (USR_NOME,USR_TELEFONE,USR_EMAIL,USR_CPF,USR_FUNCAO,USR_ESTADO,USR_CIDADE,USR_BAIRRO,USR_RUA,USR_STATUS) " +
-                                          "VALUES(?, ?,?, ?,?, ?, ?, ?, ?, ?);");
-           stat1.setString(1,us.getNome());
-           stat1.setString(2,us.getTelefone());
-           stat1.setString(3,us.getEmail());
-           stat1.setString(4,us.getCPF());
-           stat1.setString(5,us.getFuncao());
-           stat1.setString(6,us.getEstado());
-           stat1.setString(7,us.getCidade());
-           stat1.setString(8,us.getBairro());
-           stat1.setString(9,us.getRua());
-           stat1.setString(10,Character.toString(us.getUsStatus()));
-           
-           //Pega o userid para usar na tabela de acesso
-           stat2 = conec.prepareStatement("SELECT MAX(USR_ID) FROM USUARIOS WHERE USR_NOME = ? AND USR_CPF = ?;");
-           stat2.setString(1, us.getNome());
-           stat2.setString(2,us.getCPF());
-           result = stat2.executeQuery();
-           
-           int usr_id = result.getInt(1);
-           
-           //insere os dados de acesso na tabela ussistem
-           stat3 = conec.prepareStatement("INSERT INTO USSISTEMA (US_ID,US_LOGIN,US_SENHA,US_STATUS,US_GROUPID) "
-                                            + "VALUES(?, ?, ?, ?,?);");
-           stat3.setInt(1, usr_id);
-           stat3.setString(2,us.getLogin());
-           stat3.setString(3,us.getSenha());
-           stat3.setString(4,Character.toString(us.getUsStatus()));
-           stat2.setInt(5,us.getGrupoUser());
-           
+            //inserção de dados na tabela de usuario
+            stat1 = conec.prepareStatement("INSERT INTO USUARIOS (USR_NOME,USR_TELEFONE,USR_EMAIL,USR_CPF,USR_FUNCAO,USR_ESTADO,USR_CIDADE,USR_BAIRRO,USR_RUA,USR_STATUS) " +
+                                              "VALUES(?, ?,?, ?,?, ?, ?, ?, ?, ?);");
+            stat1.setString(1,us.getNome());
+            stat1.setString(2,us.getTelefone());
+            stat1.setString(3,us.getEmail());
+            stat1.setString(4,us.getCPF());
+            stat1.setString(5,us.getFuncao());
+            stat1.setString(6,us.getEstado());
+            stat1.setString(7,us.getCidade());
+            stat1.setString(8,us.getBairro());
+            stat1.setString(9,us.getRua());
+            stat1.setString(10,Character.toString(us.getUsStatus()));
+            stat1.execute();
+            cadEfect = true;
        }
         catch(SQLException ex){
-            //String strE = ex.toString();
-            //strE = ("\n" + ex.getStackTrace());
-           
-           System.out.println("Ocorreu um erro ao efetuar cadastro\n"
-                               +"Conte o administrador: \n"
-                               +"Codigo de erro: " + ex.getStackTrace());   
+            
+            throw new SQLException(ex);
+            
         }
         catch(Exception ex){
-            String strE = ex.toString();
-           strE += ("\n" + ex.getStackTrace());
            
-           System.out.println("Ocorreu um erro ao tentar veirificar acesso!\n"
-                               +"Conte o administrador: \n"
-                               +"Codigo de erro: " + strE);   
+           throw new Exception(ex); 
         }finally {
+           
            BDProductM.closeConnection(conec, stat1, result);
            BDProductM.closeConnection(conec, stat2, result);
            BDProductM.closeConnection(conec, stat3, result);
+           return cadEfect;
         }
     }
-       
+    
+    public boolean cadastrarUsSistema(Usuario us) throws ClassNotFoundException, SQLException, Exception{
+        Connection conec = BDProductM.getConnection();
+        PreparedStatement stat2 = null;
+        ResultSet result = null;
+        boolean cadEfect = false;
+        
+        try{
+             // insere os dados de acesso na tabela ussistem
+            stat2 = conec.prepareStatement("INSERT INTO USSISTEMA (US_ID,US_LOGIN,US_SENHA,US_STATUS,US_GROUPID) \n" +
+"                                                VALUES((SELECT MAX(USR_ID) FROM USUARIOS), ?, ?, ?,?);");
+            
+            stat2.setString(1,us.getLogin());
+            stat2.setString(2,us.getSenha());
+            stat2.setString(3,Character.toString(us.getUsStatus()));
+            stat2.setInt(4,us.getGrupoUser());
+            stat2.execute();
+
+            cadEfect = true;
+            
+            
+        }catch(SQLException ex){
+            cadEfect = false;
+            throw new SQLException(ex);
+            
+        }
+        catch(Exception ex){
+           cadEfect = false;
+           throw new Exception(ex); 
+        }finally {
+           BDProductM.closeConnection(conec, stat2, result);
+           return cadEfect;
+        }
+        
+        
+    }
+    
+    
     public void inativarUser(Usuario us ) throws ClassNotFoundException{
         Connection conec = BDProductM.getConnection();
         PreparedStatement stat = null;

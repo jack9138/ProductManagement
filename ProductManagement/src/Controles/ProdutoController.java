@@ -33,17 +33,18 @@ import javafx.stage.Stage;
  */
 public class ProdutoController implements Initializable  {
     
-
+    @FXML
     private TextField txtNomeProduto;
-  
+    @FXML
     private TextField txtPreco;
-    
+    @FXML
     private TextField txtTam;
+    @FXML
     private TextField txtCor;
    
     @FXML
     private Button btnCancelar;
-    
+    @FXML
     private Button btnFinalizar;
     
     @FXML
@@ -53,22 +54,24 @@ public class ProdutoController implements Initializable  {
     private ComboBox cmbSelectMarca;
     @FXML
     private ComboBox cmbSelectModelo;
-    
+    @FXML
     private List<MarcaModelo> marcaData;
-    
+    @FXML
     private List<MarcaModelo> modeloData;
+    @FXML
     private List<Produto> prodData;
     
+    @FXML
+    private Button btnExcluir;
+    @FXML
+    private Text txtNome;
     
     private MarcaModeloDao marcMo = new MarcaModeloDao();;
     
     private ProdutoDao prodDao = new ProdutoDao();
     
     private MarcaModelo marcModel = new MarcaModelo();
-    @FXML
-    private Button btnExcluir;
-    @FXML
-    private Text txtNome;
+    
     
     @Override//Inicia as telas de Produto
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,7 +113,7 @@ public class ProdutoController implements Initializable  {
                 prod.setProdStatus("A");
         
         
-                if(prodDao.adicionaProduto(prod)){
+                if(prodDao.AddProduto(prod)){
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                     alerta.setTitle(stage.getTitle());
                     alerta.setContentText("Produto cadastrado com sucesso !");
@@ -126,7 +129,7 @@ public class ProdutoController implements Initializable  {
                 }
             }
 
-        }catch (ClassNotFoundException ex) {
+        }catch (Exception ex) {
             Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -170,12 +173,12 @@ public class ProdutoController implements Initializable  {
         
     }
     public void carregarListaProdutos() throws ClassNotFoundException, SQLException{
-        
-        List<String> listaProdutos = new ArrayList<>();
-        
-        prodData = prodDao.listarProduto();
-        
-        for(int i = 0; i <prodData.size(); i++){
+      List<String> listaProdutos = new ArrayList<>();
+      Produto prod = new Produto();
+      
+      prodData = prodDao.GetProduto(prod);
+      
+        for(int i = 0; i < prodData.size(); i++){
             listaProdutos.add(prodData.get(i).getNomeProduto());
         }
         cmbProdutos.setItems(FXCollections.observableArrayList(listaProdutos));

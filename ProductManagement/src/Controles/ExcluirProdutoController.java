@@ -62,13 +62,10 @@ public class ExcluirProdutoController implements Initializable{
     @Override//Inicia as telas de Produto
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Controller Produto inicializado!");
-        
-   
+
         //Inicia as listas de Objetos
-        marcaData = new ArrayList();
-        modeloData = new ArrayList();
         prodData = new ArrayList();
-        
+      
         try {
                 carregarListaProdutos();
         } catch (ClassNotFoundException ex) {
@@ -81,11 +78,12 @@ public class ExcluirProdutoController implements Initializable{
     public void carregarListaProdutos() throws ClassNotFoundException, SQLException{
         
         List<String> listaProdutos = new ArrayList<>();
-        
-        prodData = prodDao.listarProduto();
-        
+        Produto prod = new Produto();
+      
+        prodData = prodDao.GetProduto(prod);
+      
         for(int i = 0; i < prodData.size(); i++){
-            listaProdutos.add(prodData.get(i).getNomeProduto()); 
+            listaProdutos.add(prodData.get(i).getNomeProduto());
         }
         cmbProdutos.setItems(FXCollections.observableArrayList(listaProdutos));
         cmbProdutos.setValue("<Selecione>");
@@ -99,10 +97,18 @@ public class ExcluirProdutoController implements Initializable{
         try{ 
             Produto prod = new Produto();
             
-            prod.setIdProduto(prodData.indexOf(prodData.get(cmbProdutos.getSelectionModel().getSelectedIndex()).getIdProduto()));
+            int prodId = prodData.get(cmbProdutos.getSelectionModel().getSelectedIndex()).getIdProduto();
             
-            prodDao.deletarProduto(prod);//chama o método removeMarca da classe DAO
+          
+            prod = prodData.get(prodId);
+            System.out.println("Produto: " + prod.getNomeProduto());
+            String removeProduto = prodDao.RemoveProduto(prod);
             
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle(stage.getTitle());
+                alerta.setContentText(removeProduto);
+                
+                alerta.showAndWait();
         }catch(Exception ex){
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);

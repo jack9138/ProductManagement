@@ -7,6 +7,7 @@ package DAO;
 
 import ConexaoBD.BDProductM;
 import ConexaoBD.ConexaoBanco;
+import Interfaces.ProdutoEstoque;
 import Model.Produto;
 import Model.Usuario;
 import Model.MarcaModelo;
@@ -16,13 +17,14 @@ import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-public class ProdutoDao {
+public class ProdutoDao implements ProdutoEstoque {
     
     private UsuarioDao usrDAO = new UsuarioDao();
     private MarcaModelo marcMod = new MarcaModelo();
     
     //Método para adicionar Produto no Banco de Dados
-    public boolean adicionaProduto(Produto p) throws ClassNotFoundException{
+    @Override
+    public boolean AddProduto(Produto p){
         Connection conec = BDProductM.getConnection();
         PreparedStatement stat = null;
         PreparedStatement stat1 = null;
@@ -86,15 +88,15 @@ public class ProdutoDao {
          return cadastrado;
          
     }
-    
+    @Override
     //Método para deletar produtos
-    public boolean deletarProduto(Produto p){
+    public String RemoveProduto(Produto p){
         Connection conec = BDProductM.getConnection();
         PreparedStatement stat = null;
         PreparedStatement stat1 = null;
         ResultSet result = null;
         
-        boolean excluido = false;
+        String excluido = new String();
         try{
             
             stat = conec.prepareStatement("DELETE FROM PRODUTO WHERE PROD_ID = ?");
@@ -106,7 +108,9 @@ public class ProdutoDao {
                 stat.setInt(1, p.getIdProduto());
                 stat.execute();
                 
-                excluido = true;
+                excluido = "Produto excluido!";
+            }else{
+               excluido = "Produto ainda possui estoque!";
             }
             
         }catch(SQLException ex){
@@ -124,8 +128,9 @@ public class ProdutoDao {
         return excluido;
     }
     
+    @Override
     //Método para listagem de produtos cadastrados
-    public List<Produto> listarProduto() throws ClassNotFoundException, SQLException{
+    public List<Produto> GetProduto(Produto p){
         Connection conec = BDProductM.getConnection();
         PreparedStatement stat = null;
         ResultSet res = null;
@@ -167,6 +172,21 @@ public class ProdutoDao {
     //Método para atualizar Produto
     //public void atualizarPrecoProduto(Produto p){
           //Fazer procedure ou trigger para chamar e realizar atualização.   
+    //}
+
+   // @Override
+    //public void AddProduto(Produto prod) {
+      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   // }
+
+    //@Override
+    //public void RemoveProduto(Produto prod) {
+      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //}
+
+    //@Override
+    //public List<Produto> GetProduto(Produto prod) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     //}
     
     
