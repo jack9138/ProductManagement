@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package Composite;
 
 import Model.Produto;
 import java.util.List;
@@ -12,12 +12,8 @@ import java.util.List;
  *
  * @author Jaque
  */
-public interface ProdutoEstoque {
+public interface ComponentProduto {
     
-    public boolean AddProduto(Produto prod);
-    
-    public String RemoveProduto(Produto prod);
-    
-    public List<Produto> GetProduto(Produto prod);
-    
+    public double CalcValorProd();
+
 }

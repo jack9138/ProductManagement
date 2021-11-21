@@ -21,11 +21,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import PacotePDF.GeradorPdf;
+
 /**
  *
  * @author jaque
  */
 public class RelatorioController implements Initializable{
+    
+    
     
     @FXML
     private Button btnCancelar;

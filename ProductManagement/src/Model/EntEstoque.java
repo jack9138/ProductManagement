@@ -8,12 +8,13 @@ package Model;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import Composite.ComponentProduto;
 /**
  *
  * @author jaque
  */
 
-public class EntEstoque{ 
+public class EntEstoque implements ComponentProduto{ 
     
     private int idEstoque;
     private Produto produto;
@@ -50,7 +51,7 @@ public class EntEstoque{
     }
     
     public Produto getProdutos(){
-        return (Produto) this.produto;
+        return this.produto;
     }
     
     
@@ -84,5 +85,10 @@ public class EntEstoque{
     
     public Usuario getUserEntrada(){
         return this.userEntrada;
+    }
+
+    @Override
+    public double CalcValorProd() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

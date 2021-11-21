@@ -7,7 +7,6 @@ package DAO;
 
 import ConexaoBD.BDProductM;
 import ConexaoBD.ConexaoBanco;
-import Interfaces.ProdutoEstoque;
 import Model.Produto;
 import Model.Usuario;
 import Model.MarcaModelo;
@@ -16,14 +15,15 @@ import java.sql.*;
 import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import Composite.ComponentProduto;
 
-public class ProdutoDao implements ProdutoEstoque {
+public class ProdutoDao {
     
     private UsuarioDao usrDAO = new UsuarioDao();
     private MarcaModelo marcMod = new MarcaModelo();
     
     //Método para adicionar Produto no Banco de Dados
-    @Override
+    
     public boolean AddProduto(Produto p){
         Connection conec = BDProductM.getConnection();
         PreparedStatement stat = null;
@@ -88,7 +88,7 @@ public class ProdutoDao implements ProdutoEstoque {
          return cadastrado;
          
     }
-    @Override
+    
     //Método para deletar produtos
     public String RemoveProduto(Produto p){
         Connection conec = BDProductM.getConnection();
@@ -128,7 +128,7 @@ public class ProdutoDao implements ProdutoEstoque {
         return excluido;
     }
     
-    @Override
+    
     //Método para listagem de produtos cadastrados
     public List<Produto> GetProduto(Produto p){
         Connection conec = BDProductM.getConnection();
@@ -188,6 +188,5 @@ public class ProdutoDao implements ProdutoEstoque {
     //public List<Produto> GetProduto(Produto prod) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     //}
-    
     
 }

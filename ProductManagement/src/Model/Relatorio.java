@@ -5,13 +5,14 @@
  */
 package Model;
 
+import Strategy.RelatorioStra;
 import java.util.Date;
 
 /**
  *
  * @author jaque
  */
-public class Relatorio {
+public class Relatorio{
     
     private String nomeRelatorio;
     private String nomeProduto;
@@ -42,8 +43,6 @@ public class Relatorio {
         this.valorTotal = valorTotal;
         this.dataEntrada = dataEntrada;
         this.dataSaida = dataSaida;
-        
-       
     }
     
     public void setNomeRelatorio(String nomeRelatorio){
