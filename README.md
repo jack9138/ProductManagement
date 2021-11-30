@@ -27,7 +27,6 @@ Strategy: Padrão comportamental, que será introduzido na parte de Controller.
      Diagrama de Classes
  
 ![Diagrama de Classes](https://user-images.githubusercontent.com/62843971/144142991-302da65f-11a8-4d16-9dbb-a80d78bb9186.PNG)
-.png)
 
      
      Diagrama de Contexto
