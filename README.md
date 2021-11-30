@@ -31,6 +31,8 @@ Strategy: Padrão comportamental, que será introduzido na parte de Controller.
      
      Diagrama de Contexto
 
+![Diagrama-Contexto](https://user-images.githubusercontent.com/89538984/144145767-6865c243-6bcd-456e-bdb8-c9e1d93c749f.jpg)
+
      Diagrama de Container
      
 ![Diagrama de contexto - C4MODEL](https://user-images.githubusercontent.com/62843971/137044568-0e691e9f-b5d4-4545-8a76-9d29069f88ce.png)
