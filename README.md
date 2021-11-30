@@ -39,7 +39,7 @@ Strategy: Padrão comportamental, que será introduzido na parte de Controller.
      
      Diagrama de Component
      
-    https://github.com/jack9138/ProductManagement/issues/5#issue-1067781153    
+![Diagrama de Component](https://user-images.githubusercontent.com/89538984/144145701-6a62d611-49b6-4775-a9b6-3b75f8238a47.png)
     
      Diagrama de Código
 
