@@ -39,6 +39,8 @@ Strategy: Padrão comportamental, que será introduzido na parte de Controller.
      
      Diagrama de Component
      
+    https://github.com/jack9138/ProductManagement/issues/5#issue-1067781153    
+    
      Diagrama de Código
 
 Diagrama de classes (Padrões de Projeto)
