@@ -49,7 +49,7 @@ Diagrama de classes (Padrões de Projeto)
 
        Strategy
 
-![strategy](https://user-images.githubusercontent.com/62843971/137044345-a1840a66-845b-4235-8bc7-a57d407b85e5.PNG)
+![DesignPatter_Strategy](https://user-images.githubusercontent.com/62843971/144143531-b9462fae-ef9a-4d27-8d49-30a1ce3ab332.PNG)
 
        Composite
 
