@@ -24,16 +24,21 @@ Observer: Padrão comportamental, que será implementado na parte de Model.
 
 Strategy: Padrão comportamental, que será introduzido na parte de Controller. 
 
+     Diagrama de Classes
+ 
+![Diagrama de classe](https://user-images.githubusercontent.com/62843971/137045458-c60913c1-a2ae-4e4d-8117-8b2340b029f9.png)
 
-
-      Diagrama de Contexto
+     
+     Diagrama de Contexto
 
 
 ![Diagrama de contexto - C4MODEL](https://user-images.githubusercontent.com/62843971/137044568-0e691e9f-b5d4-4545-8a76-9d29069f88ce.png)
 
-
-      Diagrama de Classes
-![Diagrama de classe](https://user-images.githubusercontent.com/62843971/137045458-c60913c1-a2ae-4e4d-8117-8b2340b029f9.png)
+     Diagrama de Container
+     
+     Diagrama de Component
+     
+     Diagrama de Código
 
 Diagrama de classes (Padrões de Projeto)
       
@@ -45,3 +50,7 @@ Diagrama de classes (Padrões de Projeto)
        Strategy
 
 ![strategy](https://user-images.githubusercontent.com/62843971/137044345-a1840a66-845b-4235-8bc7-a57d407b85e5.PNG)
+
+       Composite
+
+Diagrama de Código
