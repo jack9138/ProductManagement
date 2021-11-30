@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controles;
 
 import java.net.URL;
@@ -26,10 +21,6 @@ import java.text.ParseException;
 import javafx.stage.Stage;
 import javax.swing.JTextField;
 
-/**
- *
- * @author jaque
- */
 public class UsuarioController implements Initializable {
 
     @FXML
@@ -69,19 +60,19 @@ public class UsuarioController implements Initializable {
     private TextField txtEmail;
 
     private static String user = new String();
+
     private static String senha = new String();
+
     UsuarioDao udao = new UsuarioDao();
+
     private static boolean cadastro;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Cadastro inicializado!");
-        ObservableList<String> grpFuncao = FXCollections.observableArrayList(
-                "ADMINISTRADOR", "ESTOQUE", "RH/OUTROS");
+        ObservableList<String> grpFuncao = FXCollections.observableArrayList("ADMINISTRADOR", "ESTOQUE", "RH/OUTROS");
         cmbGrupoUser.setItems(grpFuncao);
-
         cmbGrupoUser.setValue("<Selecione>");
-
     }
 
     @FXML
@@ -98,12 +89,10 @@ public class UsuarioController implements Initializable {
     @FXML
     public void onActionSalvar() throws IOException, ClassNotFoundException, Exception {
         Stage stage = (Stage) btnSalvar.getScene().getWindow();
-
         try {
             Usuario us = new Usuario();
             String uscpf = new String();
             String userInitial = new String();
-
             us.setNome(txtNome.getText().toUpperCase());
             us.setCPF(txtCPF.getText().toUpperCase());
             us.setEmail(txtEmail.getText().toUpperCase());
@@ -113,31 +102,21 @@ public class UsuarioController implements Initializable {
             us.setEstado(txtUF.getText().toUpperCase());
             us.setTelefone(txtTelefone.getText().toUpperCase());
             us.setFuncao(txtFuncao.getText().toUpperCase());
-
-            //Seta o grupo do usuario cadastrado
-            if (cmbGrupoUser.getValue().equals("ADMINISTRADOR")) {//Grupo de Adminstrador
+            if (cmbGrupoUser.getValue().equals("ADMINISTRADOR")) {
                 us.setGrupoUser(1);
-            } else if (cmbGrupoUser.getValue().equals("ESTOQUE")) {//Grupo de Funcionarios Estoque
+            } else if (cmbGrupoUser.getValue().equals("ESTOQUE")) {
                 us.setGrupoUser(2);
-            } else if (cmbGrupoUser.getValue().equals("RH/OUTROS")) {//Grupo de Funcionario Administração->RH
+            } else if (cmbGrupoUser.getValue().equals("RH/OUTROS")) {
                 us.setGrupoUser(3);
             }
-
-            //Montagem do usuario:
             userInitial = us.getNome();
             uscpf = us.getCPF();
-
             us.setLogin(userInitial.substring(0, 3) + uscpf.substring(0, 3));
-
-            //Montagem da senha:
             String senha = new String();
             senha = uscpf.substring(3, uscpf.length() - 1);
             us.setSenha(senha);
-
             us.setUsStatus('A');
-            //Envia dados do Usuario para DAO de cadastro
             if (udao.cadastraUsuario(us) == true) {
-
                 if (udao.cadastrarUsSistema(us) == true) {
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                     alerta.setTitle("Cadastro Usuario");
@@ -149,24 +128,14 @@ public class UsuarioController implements Initializable {
                     alerta.setContentText("Ocorreu erro ao cadastrar usuário!");
                     alerta.showAndWait();
                 }
-
                 stage.close();
             }
         } catch (ClassNotFoundException ex) {
-
-            System.out.println("Ocorreu erro ao cadastrar usuário!\n"
-                    + "Contate o administrador: \n"
-                    + "Mensagem de erro: " + ex.getMessage()
-                    + "Local do erro: " + ex.getException());
-            
+            System.out.println("Ocorreu erro ao cadastrar usuário!\n" + "Contate o administrador: \n" + "Mensagem de erro: " + ex.getMessage() + "Local do erro: " + ex.getException());
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle(stage.getTitle());
-            alerta.setContentText("Ocorreu erro ao realizar cadastro!"
-                    + "\nContate o Administrador!");
-
+            alerta.setContentText("Ocorreu erro ao realizar cadastro!" + "\nContate o Administrador!");
             alerta.showAndWait();
-
         }
-
     }
 }

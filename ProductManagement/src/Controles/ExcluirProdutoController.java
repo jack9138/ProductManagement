@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controles;
 
 import static Controles.Main.stage;
@@ -27,103 +22,84 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-/**
- *
- * @author jaque
- */
-public class ExcluirProdutoController implements Initializable{
-    
-   
+public class ExcluirProdutoController implements Initializable {
+
     @FXML
     private Button btnCancelar;
-    
+
     private Button btnFinalizar;
-    
+
     @FXML
     private ComboBox cmbProdutos;
-       
+
     private List<MarcaModelo> marcaData;
-    
+
     private List<MarcaModelo> modeloData;
+
     private List<Produto> prodData;
-    
-    
-    private MarcaModeloDao marcMo = new MarcaModeloDao();;
-    
+
+    private MarcaModeloDao marcMo = new MarcaModeloDao();
+
+    ;
+
     private ProdutoDao prodDao = new ProdutoDao();
-    
+
     private MarcaModelo marcModel = new MarcaModelo();
-    
+
     @FXML
     private Button btnExcluir;
+
     @FXML
     private Text txtNome;
-    
-    @Override//Inicia as telas de Produto
+
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Controller Produto inicializado!");
-
-        //Inicia as listas de Objetos
         prodData = new ArrayList();
-      
         try {
-                carregarListaProdutos();
+            carregarListaProdutos();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ExcluirProdutoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
 
-    public void carregarListaProdutos() throws ClassNotFoundException, SQLException{
-        
-        List<String> listaProdutos = new ArrayList<>();
+    public void carregarListaProdutos() throws ClassNotFoundException, SQLException {
+        List<String> listaProdutos = new ArrayList();
         Produto prod = new Produto();
-      
         prodData = prodDao.GetProduto(prod);
-      
-        for(int i = 0; i < prodData.size(); i++){
+        for (int i = 0; i < prodData.size(); i++) {
             listaProdutos.add(prodData.get(i).getNomeProduto());
         }
         cmbProdutos.setItems(FXCollections.observableArrayList(listaProdutos));
         cmbProdutos.setValue("<Selecione>");
     }
-    
-    //Atividado pelo botão Excluir, chama método pra excluir produto
+
     @FXML
-    public void onActionExcluir(){
-        
-        //Método responsavel por enviar para ProdutoDao a solicitação de exclusão do Produto
-        try{ 
+    public void onActionExcluir() {
+        try {
             Produto prod = new Produto();
-            
             int prodId = prodData.get(cmbProdutos.getSelectionModel().getSelectedIndex()).getIdProduto();
-            
-          
             prod = prodData.get(prodId);
             System.out.println("Produto: " + prod.getNomeProduto());
             String removeProduto = prodDao.RemoveProduto(prod);
-            
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                alerta.setTitle(stage.getTitle());
-                alerta.setContentText(removeProduto);
-                
-                alerta.showAndWait();
-        }catch(Exception ex){
+            alerta.setTitle(stage.getTitle());
+            alerta.setContentText(removeProduto);
+            alerta.showAndWait();
+        } catch (Exception ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                alerta.setTitle(stage.getTitle());
-                alerta.setContentText("Ocorreu erro ao excluir!" +
-                                       "\nContate o Administrador!");
-                
-                alerta.show();
+            alerta.setTitle(stage.getTitle());
+            alerta.setContentText("Ocorreu erro ao excluir!" + "\nContate o Administrador!");
+            alerta.show();
         }
     }
-    
+
     @FXML
-    public void onActionCancelar(){
+    public void onActionCancelar() {
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
     }
-    
 }

@@ -1,152 +1,101 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
 import Strategy.RelatorioStra;
 import java.util.Date;
 
-/**
- *
- * @author jaque
- */
-public class Relatorio{
-    
+public class Relatorio extends RelatorioStra{
+
     private String nomeRelatorio;
-    private String nomeProduto;
-    private String nomeMarca;
-    private String nomeModelo;
-    private double precoUnid;
-    private int qtdEstoque;
+
+    private EntEstoque entradaEstoque;
+
+    private SaiEstoque saiEstoque;
+
     private double valorTotal;
-    private Date dataComum;
-    private Date dataEntrada;
-    private Date dataSaida;
-    
+
+    private Date dataInicio;
+
+    private Date dataFim;
+
     private double valorTotalSai;
+
     private double valorTotalEnt;
-    private int qtdSaiEstoque;
-    
-    public Relatorio (){
-        
+
+
+    public Relatorio() {
+    }
+
+    public Relatorio(EntEstoque entEstoque, String nomeRelatorio,Date dataInicio, Date dataFim) {
+       this.entradaEstoque = entEstoque;
+       this.dataInicio = dataInicio;
+       this.dataFim = dataFim;
     }
     
-    public Relatorio(String nomeRelatorio,String nomeProduto,String nomeMarca,String nomeModelo,double precoUnid,int qtdEstoque,double valorTotal,Date dataEntrada,Date dataSaida){ 
+    public Relatorio(SaiEstoque saiEstoque, String nomeRelatorio, Date dataInicio, Date dataFim) {
+       this.saiEstoque = saiEstoque;
+       this.dataInicio = dataInicio;
+       this.dataFim = dataFim; 
+    }
+
+    public void setNomeRelatorio(String nomeRelatorio) {
         this.nomeRelatorio = nomeRelatorio;
-        this.nomeProduto = nomeProduto;
-        this.nomeMarca = nomeMarca;
-        this.nomeModelo = nomeModelo;
-        this.precoUnid = precoUnid;
-        this.qtdEstoque = qtdEstoque;
-        this.valorTotal = valorTotal;
-        this.dataEntrada = dataEntrada;
-        this.dataSaida = dataSaida;
     }
-    
-    public void setNomeRelatorio(String nomeRelatorio){
-        this.nomeRelatorio = nomeRelatorio;
-    }
-    
-    public String getNomeRelatorio(){
+
+    public String getNomeRelatorio() {
         return this.nomeRelatorio;
     }
-    
-    public void setNomeProduto(String nomeProduto){
-        this.nomeProduto = nomeProduto;
+
+    public void setEntEstoque(EntEstoque entEstoque) {
+        this.entradaEstoque = entEstoque;
+    }
+
+    public EntEstoque getEntEstoque() {
+        return this.entradaEstoque;
+    }
+
+    public void setSaiEstoque(SaiEstoque saiEstoque) {
+        this.saiEstoque = saiEstoque;
+    }
+
+    public SaiEstoque getSaiEstoque() {
+        return this.saiEstoque;
     }
     
-    public String getNomeProduto(){
-        return this.nomeProduto;
+    public void  setValTotalEntrada(double valTotalEnt) {
+        this.valorTotalEnt = valTotalEnt;
     }
-    
-    public void setNomeMarca(String nomeMarca){
-        this.nomeMarca = nomeMarca;
-    }
-    
-    public String getNomeMarca(){
-        return this.nomeMarca;
-    }
-    
-    
-     public void setNomeModelo(String nomeModelo){
-        this.nomeModelo = nomeModelo;
-    }
-    
-    public String getNomeModelo(){
-        return this.nomeModelo;
-    }
-    
-    public void setPrecoUnid(double precoUnid){
-        this.precoUnid =  precoUnid;
-    }
-    
-    public double getPrecoUnid(){
-        return this.precoUnid;
-    }
-    
-    public void setQtdEstoque(int qtdEstoque){
-        this.qtdEstoque =  qtdEstoque;
-    }
-    
-    public int getQtdEstoque(){
-        return this.qtdEstoque;
-    }
-    
-    public void setQtdSaiEstoque(int qtdSaiEstoque){
-        this.qtdSaiEstoque =  qtdSaiEstoque;
-    }
-    
-    public int getQtdSaiEstoque(){
-        return this.qtdSaiEstoque;
-    }
-    
-    public void setValorTotal(double valorTotal){
-        this.valorTotal =  valorTotal;
-    }
-    
-    public double getValorTotal(){
-        return this.valorTotal;
-    }
-    
-    public void setDataEntrada(Date dataEntrada){
-        this.dataEntrada =  dataEntrada;
-    }
-    
-    public Date getDataEntrada(){
-        return this.dataEntrada;
-    }
-    
-    public void setDataSaida(Date dataSaida){
-        this.dataSaida =  dataSaida;
-    }
-    
-    public Date getDataSaida(){
-        return this.dataSaida;
-    }
-    
-    public void setDataComum(Date dataComum){
-        this.dataComum =  dataComum;
-    }
-    
-    public Date getDataComum(){
-        return this.dataComum;
-    }
-    
-    public void setValorTotalEnt(double valorTotalEnt){
-        this.valorTotalEnt =  valorTotalEnt;
-    }
-    
-    public double getValorTotalEnt(){
+    public double  getValorTotalEntrada() {
         return this.valorTotalEnt;
     }
     
-     public void setValorTotalSai(double valorTotalSai){
-        this.valorTotalSai =  valorTotalSai;
+    public void  setValTotalSaida(double valTotalSai) {
+        this.valorTotalSai = valTotalSai;
     }
-    
-    public double getValorTotalSai(){
+    public double  getValorTotalSaida() {
         return this.valorTotalSai;
     }
+    
+    public void  setValTotalComparativo(double valTotal) {
+        this.valorTotal = valTotal;
+    }
+    public double  getValTotalComparativo() {
+        return this.valorTotal;
+    }
+    
+    
+    public void  setDataInicio(Date dateInicio) {
+        this.dataInicio= dateInicio;
+    }
+    public Date  getDataInicio() {
+        return this.dataInicio;
+    }
+    
+    public void  setDataFim(Date dateFim) {
+        this.dataFim = dateFim;
+    }
+    public Date  getDataFim() {
+        return this.dataFim;
+    }
+    
+    
 }

@@ -1,102 +1,98 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
-/**
- *
- * @author jaque
- */
 public class Produto {
-    
-    private int idProduto;//Mudar tabela, para ID do produto ser gerado a partir de uma proc/function
+
+    private int idProduto;
+
     private String nomeProduto;
+
     private String corProd;
+
     private double valorProduto;
+
     private int tamanho;
+
     private String prodStatus;
-    
+
     private MarcaModelo marca = new MarcaModelo();
+
     private MarcaModelo modelo = new MarcaModelo();
-    
-    public Produto(){
-        
+
+    public Produto() {
     }
-    
-    public Produto(String nomeProduto, String descriProduto, String cor,double valorProduto,MarcaModelo marca,MarcaModelo modelo,int tamanho,int idProduto,String prodStatus){
+
+    public Produto(String nomeProduto, String descriProduto, String cor, double valorProduto, MarcaModelo marca, MarcaModelo modelo, int tamanho, int idProduto, String prodStatus) {
         this.nomeProduto = nomeProduto;
         this.corProd = corProd;
-        this.valorProduto = valorProduto; 
+        this.valorProduto = valorProduto;
         this.tamanho = tamanho;
         this.marca = marca;
         this.modelo = modelo;
         this.idProduto = idProduto;
         this.prodStatus = prodStatus;
     }
-    
-    public void setIdProduto(int idProduto){
+
+    public void setIdProduto(int idProduto) {
         this.idProduto = idProduto;
     }
-    
-    public int getIdProduto(){
+
+    public int getIdProduto() {
         return this.idProduto;
     }
-    public void setNomeProduto(String nomeProduto){
+
+    public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
     }
-    
-    public String getNomeProduto(){
+
+    public String getNomeProduto() {
         return this.nomeProduto;
     }
-    
-    public void setValor(double valorProduto){
+
+    public void setValor(double valorProduto) {
         this.valorProduto = valorProduto;
     }
-    
-    public double  getValor(){
+
+    public double getValor() {
         return this.valorProduto;
     }
-    
-    
-    public void setModelo(MarcaModelo modelo){
+
+    public void setModelo(MarcaModelo modelo) {
         this.modelo = modelo;
     }
-    
-    public MarcaModelo getModelo(){
+
+    public MarcaModelo getModelo() {
         return this.modelo;
     }
-    
-    public void setMarca(MarcaModelo marca){
+
+    public void setMarca(MarcaModelo marca) {
         this.marca = marca;
     }
-    
-    public MarcaModelo getMarca(){
+
+    public MarcaModelo getMarca() {
         return this.marca;
     }
-    
-    public void setTamanho(int tamanho){
+
+    public void setTamanho(int tamanho) {
         this.tamanho = tamanho;
     }
-    
-    public int getTamanho(){
+
+    public int getTamanho() {
         return this.tamanho;
     }
-    
-    public void setCorProd(String corProd){
+
+    public void setCorProd(String corProd) {
         this.corProd = corProd;
     }
-    
-    public String getCorProd(){
+
+    public String getCorProd() {
         return this.corProd;
     }
-    
-    public void setProdStatus(String prodStatus){
+
+    public void setProdStatus(String prodStatus) {
         this.prodStatus = prodStatus;
     }
-    
-    public String getProdStatus(){
+
+    public String getProdStatus() {
         return this.prodStatus;
     }
 }
