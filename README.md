@@ -60,5 +60,6 @@ Diagrama de classes (Padrões de Projeto)
 
        Composite
 
-![Diagrama-Composite](https://user-images.githubusercontent.com/89538984/144145838-c59ab558-bca6-44c5-b664-cc26aef0ed7e.jpeg![Diagrama Composite](https://user-images.githubusercontent.com/84106339/144154550-d2aac334-67ce-4f72-b981-b00a952968bd.jpeg)
+![Diagrama Composite](https://user-images.githubusercontent.com/84106339/144154840-4fc6891e-e3cc-475f-82bc-175980e6663c.jpeg)
+
 
